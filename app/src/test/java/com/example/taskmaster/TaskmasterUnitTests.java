@@ -10,8 +10,20 @@ import static org.junit.Assert.*;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 public class TaskmasterUnitTests {
+
     @Test
-    public void addition_isCorrect() {
-        assertEquals(4, 2 + 2);
+    public void testMainActivity() {
+        // there are no additional classes or methods to test at this time
     }
+
+    @Test
+    public void testAllTasksActivity() {
+        // there are no additional classes or methods to test at this time
+    }
+
+    @Test
+    public void testAddTaskActivity() {
+        // there are no additional classes or methods to test at this time
+    }
+
 }
