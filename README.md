@@ -32,9 +32,7 @@ Stretch goals:
 
 -[X] Decide on a color scheme.
 
--[ ] Decide font families.
-
-Fonts: I decided to stick with the built-in Android font-families, but I could change my mind.
+-[X] Decide font families. For now will stick with the built-in Android font-families.
 
 ## Screenshots
 
