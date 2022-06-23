@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -23,6 +24,8 @@ public class AddTask extends AppCompatActivity {
 
         addThisTaskButton.setOnClickListener(view -> {
             Log.i("", "Entered incrementTaskCounter lambda.");
+            TextView successText = AddTask.this.findViewById(R.id.submittedText);
+            successText.setVisibility(View.VISIBLE);
 //            incrementTaskCounter();
 //            setTaskCounterText();
         });
