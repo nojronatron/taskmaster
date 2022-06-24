@@ -58,33 +58,31 @@ Stretch goals:
 
 ## Screenshots
 
-![Screen cap of My Tasks Activity (Home Page)](./app/screenshots/Taskmaster_Weds__MyTasksActivity.png)
+![My Tasks Activity (Home Page)](./app/screenshots/Taskmaster_Weds__MyTasksActivity.png)
 
-![Screen cap of Add Task Activity](./app/screenshots/Taskmaster_Weds__AddTaskActivity.png)
+![Add Task Activity](./app/screenshots/Taskmaster_Weds__AddTaskActivity.png)
 
-![Screen cap of Add Task Activity - Submit Button Clicked](./app/screenshots/Taskmaster_Weds__AddTaskActivity_Submitted.png)
+![Add Task Activity - Submit Button Clicked](./app/screenshots/Taskmaster_Weds__AddTaskActivity_Submitted.png)
 
-![Screen cap of All Tasks Activity](./app/screenshots/Taskmaster_Weds__AllTasksActivity.png)
+![All Tasks Activity](./app/screenshots/Taskmaster_Weds__AllTasksActivity.png)
 
-![Screen cap of Home Page](./app/screenshots/)
+![Revamped Home Page](./app/screenshots/Taskmaster_Thurs__HomeActivity.png)
 
-![](./app/screenshots/)
+![Adding a Task Step 1](./app/screenshots/Taskmaster_Thurs__AddTask_1.png)
 
-![](./app/screenshots/)
+![Adding a Task Step 2](./app/screenshots/Taskmaster_Thurs__AddTask_2.png)
 
-![](./app/screenshots/)
+![Adding a Task Step 3](./app/screenshots/Taskmaster_Thurs__AddTask_3.png)
 
-![](./app/screenshots/)
+![All Tasks Activity](./app/screenshots/Taskmaster_Thurs__AllTasksActivity.png)
 
-![](./app/screenshots/)
+![Task Detail Activity](./app/screenshots/Taskmaster_Thurs__TaskDetail.png)
 
-![](./app/screenshots/)
+![User Settings Activity 1](./app/screenshots/Taskmaster_Thurs__UserSettingsActivity_1.png)
 
-![](./app/screenshots/)
+![User Settings Activity 2](./app/screenshots/Taskmaster_Thurs__UserSettingsActivity_2.png)
 
-![](./app/screenshots/)
-
-![](./app/screenshots/)
+![User Settings Activity 3](./app/screenshots/Taskmaster_Thurs__UserSettingsActivity_3.png)
 
 ## Tests
 
