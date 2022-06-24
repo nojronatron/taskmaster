@@ -66,6 +66,25 @@ Stretch goals:
 
 ![Screen cap of All Tasks Activity](./app/screenshots/Taskmaster_Weds__AllTasksActivity.png)
 
+![Screen cap of Home Page](./app/screenshots/)
+
+![](./app/screenshots/)
+
+![](./app/screenshots/)
+
+![](./app/screenshots/)
+
+![](./app/screenshots/)
+
+![](./app/screenshots/)
+
+![](./app/screenshots/)
+
+![](./app/screenshots/)
+
+![](./app/screenshots/)
+
+![](./app/screenshots/)
 
 ## Tests
 
