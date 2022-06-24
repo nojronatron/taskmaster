@@ -88,7 +88,7 @@ Stretch goals:
 
 Link to [Unittest Tests Package](./app/java/com/example/taskmaster/TaskmasterUnitTests.java)
 
-Link to [Espresso Tests Package](./app/src/androidTest/java/com/example/taskmaster)
+Link to [Espresso Tests Package](./app/src/androidTest/java/com/example/taskmaster/HomeActivityTestAllTasksDisplays.java)
 
 ## References and Attributions
 
