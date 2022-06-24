@@ -26,13 +26,13 @@ Feature Tasks are broken down into the following sub sections.
 
 -[X] Should allow going to the “add tasks” and “all tasks” page.
 
--[ ] Create a Task Detail page. It should have a title at the top of the page, and a Lorem Ipsum description.
+-[X] Create a Task Detail page. It should have a title at the top of the page, and a Lorem Ipsum description.
 
--[ ] Create a Settings page. It should allow users to enter their username and hit save.
+-[X] Create a Settings page. It should allow users to enter their username and hit save.
 
--[ ] The main page should be modified to contain three different buttons with hardcoded task titles. When a user taps one of the titles, it should go to the Task Detail page, and the title at the top of the page should match the task title that was tapped on the previous page.
+-[X] The main page should be modified to contain three different buttons with hardcoded task titles. When a user taps one of the titles, it should go to the Task Detail page, and the title at the top of the page should match the task title that was tapped on the previous page.
 
--[ ] The homepage should also contain a button to visit the Settings page, and once the user has entered their username, it should display “{username}’s tasks” above the three task buttons.
+-[X] The homepage should also contain a button to visit the Settings page, and once the user has entered their username, it should display “{username}’s tasks” above the three task buttons.
 
 ### Add a Task
 
@@ -46,13 +46,15 @@ Feature Tasks are broken down into the following sub sections.
 
 -[X] The 'all tasks' page should just be an image with a back button; it needs no functionality.
 
-### Styling
+### Styling and Stretch Goals
 
 Stretch goals:
 
 -[X] Decide on a color scheme.
 
 -[X] Decide font families. For now will stick with the built-in Android font-families.
+
+-[ ] Allow the user to specify on their settings page how many tasks should be shown on the homepage. Use this to dynamically create buttons for as many tasks as the user requests.
 
 ## Screenshots
 
@@ -63,6 +65,7 @@ Stretch goals:
 ![Screen cap of Add Task Activity - Submit Button Clicked](./app/screenshots/Taskmaster_Weds__AddTaskActivity_Submitted.png)
 
 ![Screen cap of All Tasks Activity](./app/screenshots/Taskmaster_Weds__AllTasksActivity.png)
+
 
 ## Tests
 

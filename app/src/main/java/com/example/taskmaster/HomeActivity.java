@@ -42,6 +42,14 @@ public class HomeActivity extends AppCompatActivity {
             startActivity(goToAllTasksActivity);
         });
 
+        // Set onclick button event handling to UserSettings Activity
+        Button userSettingsButton = HomeActivity.this.findViewById(R.id.homeUserSettingsButton);
+
+        userSettingsButton.setOnClickListener(view -> {
+            Intent goToUserSettingsActivity = new Intent(HomeActivity.this, UserSettings.class);
+            startActivity(goToUserSettingsActivity);
+        });
+
         // get a reference to the first home task button
         Button homeTaskButton1 = HomeActivity.this.findViewById(R.id.homeTaskButton1);
         Button homeTaskButton2 = HomeActivity.this.findViewById(R.id.homeTaskButton2);
