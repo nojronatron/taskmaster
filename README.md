@@ -89,3 +89,7 @@ Stretch goals:
 Link to [Unittest Tests Package](./app/java/com/example/taskmaster/TaskmasterUnitTests.java)
 
 Link to [Espresso Tests Package](./app/src/androidTest/java/com/example/taskmaster)
+
+## References and Attributions
+
+As a guide I utilized the Class Repository and this [Medium.com article](https://medium.com/@haxzie/using-intents-and-extras-to-pass-data-between-activities-android-beginners-guide-565239407ba0)
