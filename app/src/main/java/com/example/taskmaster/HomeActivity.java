@@ -11,6 +11,9 @@ import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class HomeActivity extends AppCompatActivity {
 
     // declare public static final type fields to create keys to associate with preference editor store
@@ -62,6 +65,16 @@ public class HomeActivity extends AppCompatActivity {
         RecyclerView tasksRecyclerView = findViewById(R.id.homeTaskListRecyclerView);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         tasksRecyclerView.setLayoutManager(layoutManager);
+
+        // create Task list
+        ArrayList<TaskModel> tasks = new ArrayList<>();
+        tasks.add(new TaskModel("Buy Groceries", "Milk, Juice, Eggs, and a stick of butter."));
+        tasks.add(new TaskModel("Do Laundry", "Wash, dry, fold, put away."));
+        tasks.add(new TaskModel("Vacuum", "The floors are covered in dog hair. Deal with it."));
+
+        // create and attach the recyclerview adapter and set the adapter recyclerview
+        TaskListRecyclerViewAdapter adapter = new TaskListRecyclerViewAdapter(tasks, this);
+        tasksRecyclerView.setAdapter(adapter);
     }
 
         // get a reference to the first home task button
@@ -102,5 +115,5 @@ public class HomeActivity extends AppCompatActivity {
 //                startActivity(intent);
 //            }
 //        });
-    }
+//    }
 }

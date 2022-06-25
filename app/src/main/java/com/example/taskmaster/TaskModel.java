@@ -7,10 +7,10 @@ public class TaskModel {
 
     public TaskModel(){}
 
-    public TaskModel(String title, String body, String state) {
+    public TaskModel(String title, String body) {
         this.title = title;
         this.body = body;
-        this.state = state;
+        this.state = "New";
     }
 
     public String getTitle() {
