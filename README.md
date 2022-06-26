@@ -54,6 +54,14 @@ Stretch goals:
 
 ## Screenshots
 
+### Latest Updates
+
+![Home Page Activity (Home Page)](./app/screenshots/Taskmaster_Sat__HomeActivityScroller.png)
+
+![All Tasks Activity with RecyclerView](./app/screenshots/Taskmaster_Sat__AllTaskActivityWithRecyclerView.png)
+
+### Previous Updates In Descending Order
+
 ![My Tasks Activity (Home Page)](./app/screenshots/Taskmaster_Weds__MyTasksActivity.png)
 
 ![Add Task Activity](./app/screenshots/Taskmaster_Weds__AddTaskActivity.png)
@@ -79,10 +87,6 @@ Stretch goals:
 ![User Settings Activity 2](./app/screenshots/Taskmaster_Thurs__UserSettingsActivity_2.png)
 
 ![User Settings Activity 3](./app/screenshots/Taskmaster_Thurs__UserSettingsActivity_3.png)
-
-![Home Page Activity (Home Page)](./app/screenshots/Taskmaster_Sat__HomeActivityScroller.png)
-
-![All Tasks Activity with RecyclerView](./app/screenshots/Taskmaster_Sat__AllTaskActivityWithRecyclerView.png)
 
 ## Tests
 
