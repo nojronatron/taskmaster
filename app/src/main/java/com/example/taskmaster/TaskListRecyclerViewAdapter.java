@@ -36,14 +36,46 @@ public class TaskListRecyclerViewAdapter extends RecyclerView.Adapter<TaskListRe
     @Override
     public void onBindViewHolder(@NonNull TaskListRecyclerViewAdapter.TaskListViewHolder holder, int position) {
         TextView taskFragmentTextView = holder.itemView.findViewById(R.id.fragTaskListFragment);
-        String taskTitle = tasks.get(position).getTitle();
-        taskFragmentTextView.setText(position + ". " + taskTitle);
+        TaskModel selectedTask = tasks.get(position);
+
+        int itemNumber = position + 1;
+
+        String taskTitleFormattedOutput = String.format(
+                "%1$s",
+                selectedTask.getTitle()
+        );
+
+        String taskStateFormattedOutput = String.format(
+                "%1$s",
+                selectedTask.getState()
+        );
+        String taskBodyFormattedOutput = String.format(
+                "%1$s",
+                selectedTask.getBody()
+        );
+        String taskFullDetailsOutput = String.format(
+                "%1$s [%2$s]\n%3$s",
+                selectedTask.getTitle(),
+                selectedTask.getState(),
+                selectedTask.getBody()
+        );
+
+        taskFragmentTextView.setText(String.format(
+                "%1$s:\n %2$s [%3$s]: \n%4$s",
+                itemNumber,
+                selectedTask.getTitle(),
+                selectedTask.getState(),
+                selectedTask.getBody()
+        ));
 
         // make an OnClick handler to interact with RecyclerView items
         View taskViewHolder = holder.itemView;
         taskViewHolder.setOnClickListener(view -> {
             Intent goToTaskDetailView = new Intent(callingActivity, TaskDetailActivity.class);
-            goToTaskDetailView.putExtra(HomeActivity.TASK_TITLE, taskTitle);
+//            goToTaskDetailView.putExtra(HomeActivity.TASK_TITLE, taskTitleFormattedOutput);
+//            goToTaskDetailView.putExtra(HomeActivity.TASK_STATE, taskStateFormattedOutput);
+//            goToTaskDetailView.putExtra(HomeActivity.TASK_BODY, taskBodyFormattedOutput);
+            goToTaskDetailView.putExtra(HomeActivity.SELECTED_TASK_DETAILS, taskFullDetailsOutput);
             callingActivity.startActivity(goToTaskDetailView);
         });
     }

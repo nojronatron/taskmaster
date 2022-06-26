@@ -26,10 +26,10 @@ Feature Tasks are broken down into the following sub sections.
 - [X] The main page should be modified to contain three different buttons with hardcoded task titles. When a user taps one of the titles, it should go to the Task Detail page, and the title at the top of the page should match the task title that was tapped on the previous page.
 - [X] The homepage should also contain a button to visit the Settings page, and once the user has entered their username, it should display “{username}’s tasks” above the three task buttons.
 - [X] Refactor home page to use a RecyclerView for displaying Task data. Will be hard-coded data for now.
-- [ ] Implement a Task Class with "States" for the tasks i.e.: "New", "Assigned", "In Progress", or "Complete".
-- [ ] Implement a ViewAdapter class to display data from list of Tasks
-- [ ] Create at least 3 hard-coded tasks in ~~MainActivity~~ HomeActivity.
-- [ ] A tapped task in RecyclerView will launch the ~~DetailPage~~ TaskDetailActivity with the correct Task Title displayed.
+- [X] Implement a Task Class with "States" for the tasks i.e.: "New", "Assigned", "In Progress", or "Complete".
+- [X] Implement a ViewAdapter class to display data from list of Tasks
+- [X] Create at least 3 hard-coded tasks in ~~MainActivity~~ HomeActivity.
+- [X] A tapped task in RecyclerView will launch the ~~DetailPage~~ TaskDetailActivity with the correct Task Title displayed.
 
 ### Add a Task
 

@@ -18,6 +18,9 @@ public class HomeActivity extends AppCompatActivity {
 
     // declare public static final type fields to create keys to associate with preference editor store
     public static final String TASK_TITLE = null;
+    public static final String TASK_STATE = null;
+    public static final String TASK_BODY = null;
+    public static final String SELECTED_TASK_DETAILS = null;
 
     // declare shared preferences for storing data
     SharedPreferences preferences;
@@ -53,6 +56,8 @@ public class HomeActivity extends AppCompatActivity {
             Intent goToUserSettingsActivity = new Intent(HomeActivity.this, UserSettings.class);
             startActivity(goToUserSettingsActivity);
         });
+
+        setUpTasksRecyclerView();
     }
 
     /**
@@ -77,43 +82,4 @@ public class HomeActivity extends AppCompatActivity {
         tasksRecyclerView.setAdapter(adapter);
     }
 
-        // get a reference to the first home task button
-//        Button homeTaskButton1 = HomeActivity.this.findViewById(R.id.homeTaskButton1);
-//        Button homeTaskButton2 = HomeActivity.this.findViewById(R.id.homeTaskButton2);
-//        Button homeTaskButton3 = HomeActivity.this.findViewById(R.id.homeTaskButton3);
-
-        // Task List Buttons event handling
-//        homeTaskButton1.setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(HomeActivity.this, TaskDetailActivity.class);
-//                String selectedTaskNameText = homeTaskButton1.getText().toString();
-//                intent.putExtra(TASK_TITLE, selectedTaskNameText);
-//                startActivity(intent);
-//            }
-//        });
-//
-//        homeTaskButton2.setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(HomeActivity.this, TaskDetailActivity.class);
-//                String selectedTaskNameText = homeTaskButton2.getText().toString();
-//                intent.putExtra(TASK_TITLE, selectedTaskNameText);
-//                startActivity(intent);
-//            }
-//        });
-//
-//        homeTaskButton3.setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(HomeActivity.this, TaskDetailActivity.class);
-//                String selectedTaskNameText = homeTaskButton3.getText().toString();
-//                intent.putExtra(TASK_TITLE, selectedTaskNameText);
-//                startActivity(intent);
-//            }
-//        });
-//    }
 }
