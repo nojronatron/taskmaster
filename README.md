@@ -2,13 +2,15 @@
 
 ## Daily Change Log
 
-Implmented Homepage, Add a Task, and All Tasks Activities.
+Implemented Homepage, Add a Task, and All Tasks Activities.
 
 Configured layout of all three Activities.
 
 Enabled button-based navigation and retained back-button functionality.
 
 Added styling.
+
+Implemented RecyclerView on AllTasks Activity, along with Spinner element to show hard-coded task list.
 
 ## Feature Tasks
 
@@ -48,7 +50,7 @@ Stretch goals:
 - [X] Decide on a color scheme.
 - [X] Decide font families. For now will stick with the built-in Android font-families.
 - [ ] Allow the user to specify on their settings page how many tasks should be shown on the homepage. Use this to dynamically create buttons for as many tasks as the user requests.
-- [ ] Also display the description of the task rather than Lorem Ipsum text.
+- [X] Also display the description of the task rather than Lorem Ipsum text.
 
 ## Screenshots
 
@@ -77,6 +79,10 @@ Stretch goals:
 ![User Settings Activity 2](./app/screenshots/Taskmaster_Thurs__UserSettingsActivity_2.png)
 
 ![User Settings Activity 3](./app/screenshots/Taskmaster_Thurs__UserSettingsActivity_3.png)
+
+![Home Page Activity (Home Page)](./app/screenshots/Taskmaster_Sat__HomeActivityScroller.png)
+
+![All Tasks Activity with RecyclerView](./app/screenshots/Taskmaster_Sat__AllTaskActivityWithRecyclerView.png)
 
 ## Tests
 
