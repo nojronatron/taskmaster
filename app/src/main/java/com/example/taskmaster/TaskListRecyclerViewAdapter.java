@@ -38,21 +38,10 @@ public class TaskListRecyclerViewAdapter extends RecyclerView.Adapter<TaskListRe
         TextView taskFragmentTextView = holder.itemView.findViewById(R.id.fragTaskListFragment);
         TaskModel selectedTask = tasks.get(position);
 
+        // humans don't number their task lists starting with zero
         int itemNumber = position + 1;
 
-        String taskTitleFormattedOutput = String.format(
-                "%1$s",
-                selectedTask.getTitle()
-        );
-
-        String taskStateFormattedOutput = String.format(
-                "%1$s",
-                selectedTask.getState()
-        );
-        String taskBodyFormattedOutput = String.format(
-                "%1$s",
-                selectedTask.getBody()
-        );
+        // format data for sending as an Intent Extra
         String taskFullDetailsOutput = String.format(
                 "%1$s [%2$s]\n%3$s",
                 selectedTask.getTitle(),
@@ -60,6 +49,7 @@ public class TaskListRecyclerViewAdapter extends RecyclerView.Adapter<TaskListRe
                 selectedTask.getBody()
         );
 
+        // sets formatted data to TextView for display
         taskFragmentTextView.setText(String.format(
                 "%1$s:\n %2$s [%3$s]: \n%4$s",
                 itemNumber,
@@ -72,9 +62,6 @@ public class TaskListRecyclerViewAdapter extends RecyclerView.Adapter<TaskListRe
         View taskViewHolder = holder.itemView;
         taskViewHolder.setOnClickListener(view -> {
             Intent goToTaskDetailView = new Intent(callingActivity, TaskDetailActivity.class);
-//            goToTaskDetailView.putExtra(HomeActivity.TASK_TITLE, taskTitleFormattedOutput);
-//            goToTaskDetailView.putExtra(HomeActivity.TASK_STATE, taskStateFormattedOutput);
-//            goToTaskDetailView.putExtra(HomeActivity.TASK_BODY, taskBodyFormattedOutput);
             goToTaskDetailView.putExtra(HomeActivity.SELECTED_TASK_DETAILS, taskFullDetailsOutput);
             callingActivity.startActivity(goToTaskDetailView);
         });

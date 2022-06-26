@@ -10,7 +10,7 @@ Enabled button-based navigation and retained back-button functionality.
 
 Added styling.
 
-Implemented RecyclerView on AllTasks Activity, along with Spinner element to show hard-coded task list.
+Implemented TaskModel to carry data, RecyclerView on AllTasks Activity, and a Spinner element to show hard-coded tasks in a list.
 
 ## Feature Tasks
 

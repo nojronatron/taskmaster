@@ -18,9 +18,9 @@ public class TaskDetailActivity extends AppCompatActivity {
 
         // prepare to consume from an Intent Extra
         Intent intent = getIntent();
-        // get intent extra task_title
 
         if (intent != null) {
+            // get intent extra: selected task details
             selectedTaskDetails = intent.getStringExtra(HomeActivity.SELECTED_TASK_DETAILS);
         }
 
