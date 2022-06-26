@@ -14,13 +14,20 @@ public class TaskDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_detail);
 
+        String selectedTaskDetails = "Intent Was Not Set";
+
         // prepare to consume from an Intent Extra
         Intent intent = getIntent();
-        // get intent extra task_title
-        String selectedTaskName = intent.getStringExtra(HomeActivity.TASK_TITLE);
+
+        if (intent != null) {
+            // get intent extra: selected task details
+            selectedTaskDetails = intent.getStringExtra(HomeActivity.SELECTED_TASK_DETAILS);
+        }
+
         // get the text field reference
-        TextView taskDetailTitle = TaskDetailActivity.this.findViewById(R.id.taskDetailTitleText);
-        // update the text field reference
-        taskDetailTitle.setText(selectedTaskName);
+        TextView taskDetailDescriptionText = TaskDetailActivity.this.findViewById(R.id.taskDetailDescriptionText);
+
+        // update the text fields by references
+        taskDetailDescriptionText.setText(selectedTaskDetails);
     }
 }
