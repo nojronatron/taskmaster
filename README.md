@@ -2,15 +2,25 @@
 
 ## Daily Change Log
 
-Implemented Homepage, Add a Task, and All Tasks Activities.
+Weds and Thurs, June 23 and 24:
 
-Configured layout of all three Activities.
+- Implemented Homepage, Add a Task, and All Tasks Activities. 
+- Configured layout of all three Activities. 
+- Enabled button-based navigation and retained back-button functionality. 
+- Added styling. 
 
-Enabled button-based navigation and retained back-button functionality.
+Saturday 25-June: 
 
-Added styling.
+- Implemented TaskModel to carry data.
+- Added RecyclerView on AllTasks Activity.
+- Added Spinner element to show hard-coded tasks in a list.
 
-Implemented TaskModel to carry data, RecyclerView on AllTasks Activity, and a Spinner element to show hard-coded tasks in a list.
+Monday 27-June:
+
+- Set up Room.
+- Refactored RecyclerView.
+- Modified AddTask to utilize local DB.
+- Set up Details Page to show Task Description and Title.
 
 ## Feature Tasks
 
@@ -32,16 +42,28 @@ Feature Tasks are broken down into the following sub sections.
 - [X] Implement a ViewAdapter class to display data from list of Tasks
 - [X] Create at least 3 hard-coded tasks in ~~MainActivity~~ HomeActivity.
 - [X] A tapped task in RecyclerView will launch the ~~DetailPage~~ TaskDetailActivity with the correct Task Title displayed.
+- [ ] Refactor RecyclerView to display all Task Entities in the Database.
 
 ### Add a Task
 
 - [X] The “Add a Task” page allows users to type in details about a new task.
 - [X] Must show a title and a body.
 - [X] When users click the “submit” button, show a “submitted!” label on the page.
+- [ ] Modify Add Task Form to save data entered as a Task in the local database.
 
 ### All Tasks
 
 - [X] The 'all tasks' page should just be an image with a back button; it needs no functionality.
+
+### Details Tasks
+
+- [ ] Ensure the description and station of a tapped task are also displayed on the detail page.
+- [ ] Ensure the Title is still displayed.
+- [ ] Decide whether to pass the entire Entity or to only pass an ID using an Intent.
+
+### Implementing Room For Data Management
+
+- [ ] Set up Room in the App and modify the Task Class to be an Entity.
 
 ### Styling and Stretch Goals
 
@@ -56,9 +78,6 @@ Stretch goals:
 
 ### Latest Updates
 
-![Home Page Activity (Home Page)](./app/screenshots/Taskmaster_Sat__HomeActivityScroller.png)
-
-![All Tasks Activity with RecyclerView](./app/screenshots/Taskmaster_Sat__AllTaskActivityWithRecyclerView.png)
 
 ### Previous Updates In Descending Order
 
@@ -88,13 +107,19 @@ Stretch goals:
 
 ![User Settings Activity 3](./app/screenshots/Taskmaster_Thurs__UserSettingsActivity_3.png)
 
+![Home Page Activity (Home Page)](./app/screenshots/Taskmaster_Sat__HomeActivityScroller.png)
+
+![All Tasks Activity with RecyclerView](./app/screenshots/Taskmaster_Sat__AllTaskActivityWithRecyclerView.png)
+
 ## Tests
 
-Link to [Unittest Tests Package](./app/java/com/example/taskmaster/TaskmasterUnitTests.java)
+- [ ] Write unittests for any custom methods built.
+
+*From hereon out* utilize Espresso Tests to validate functionality.
+
+Link to [Unittest Tests Package](./app/src/test/java/com/example/taskmaster/TaskmasterUnitTests.java)
 
 Link to [Espresso Tests Package](./app/src/androidTest/java/com/example/taskmaster/HomeActivityTestAllTasksDisplays.java)
-
-- [ ] Write unittests for any custom methods built.
 
 ## References and Attributions
 
