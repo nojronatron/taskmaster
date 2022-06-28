@@ -15,14 +15,14 @@ public interface TaskDao {
     public void insertSingleTask(TaskModel task);
 
     // CRUD: READ
-    @Query("SELECT * FROM Task")
+    @Query("SELECT * FROM TaskModel")
     public List<TaskModel> findAll();
 
     // CRUD: READ
-    @Query("SELECT * FROM Task ORDER BY name ASC")
+    @Query("SELECT * FROM TaskModel ORDER BY title ASC")
     public List<TaskModel> findAllSortedByName();
 
     // CRUD: READ
-    @Query("SELECT * FROM Task WHERE id = :id")
+    @Query("SELECT * FROM TaskModel WHERE id = :id")
     public TaskModel findByAnId(Long id);
 }

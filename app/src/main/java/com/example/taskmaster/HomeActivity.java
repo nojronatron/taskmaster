@@ -12,6 +12,7 @@ import android.widget.Button;
 import com.example.taskmaster.activites.AddTask;
 import com.example.taskmaster.activites.AllTasks;
 import com.example.taskmaster.adapters.TaskListRecyclerViewAdapter;
+import com.example.taskmaster.database.TaskMasterDatabase;
 import com.example.taskmaster.fragments.UserSettings;
 import com.example.taskmaster.models.TaskModel;
 
@@ -24,6 +25,10 @@ public class HomeActivity extends AppCompatActivity {
     public static final String TASK_STATE = null;
     public static final String TASK_BODY = null;
     public static final String SELECTED_TASK_DETAILS = null;
+
+    // set a reference to the Room Database
+    TaskMasterDatabase taskMasterDatabase;
+    public static final String DATABASE_NAME = "task_master";
 
     // declare shared preferences for storing data
     SharedPreferences preferences;
