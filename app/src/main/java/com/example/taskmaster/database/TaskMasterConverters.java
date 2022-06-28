@@ -15,7 +15,7 @@ public class TaskMasterConverters {
     }
 
     @TypeConverter
-    public static Long dateToTimeStamp(Date date) {
+    public static Long toTimeStamp(Date date) {
         return date == null ? null : date.getTime();
     }
 

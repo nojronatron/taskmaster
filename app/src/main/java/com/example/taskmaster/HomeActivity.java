@@ -125,7 +125,6 @@ public class HomeActivity extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         tasksRecyclerView.setLayoutManager(layoutManager);
 
-        // TODO: Remove this hard coded tasks list?
         // create Task list
 //        ArrayList<TaskModel> tasks = new ArrayList<>();
 //        tasks.add(new TaskModel("Buy Groceries", "Milk, Juice, Eggs, and a stick of butter."));

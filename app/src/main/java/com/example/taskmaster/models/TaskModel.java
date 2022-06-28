@@ -78,7 +78,7 @@ public class TaskModel {
     @Override
     public String toString() {
         // TODO: Confirm this is a good thing to actually do.
-        return String.format("%1$s: %2$s", this.title, this.body);
+        return String.format("%1$s - %2$s", this.title, this.body);
     }
 
     public enum StateCategoryEnum {

@@ -49,7 +49,7 @@ Feature Tasks are broken down into the following sub sections.
 - [X] The “Add a Task” page allows users to type in details about a new task.
 - [X] Must show a title and a body.
 - [X] When users click the “submit” button, show a “submitted!” label on the page.
-- [ ] Modify Add Task Form to save data entered as a Task in the local database.
+- [ ] Modify Add Task Form to save data entered as a Task in the local database. *in process*
 
 ### All Tasks
 
@@ -57,13 +57,13 @@ Feature Tasks are broken down into the following sub sections.
 
 ### Details Tasks
 
-- [ ] Ensure the description and station of a tapped task are also displayed on the detail page.
+- [ ] Ensure the description and status of a tapped task are also displayed on the detail page.
 - [ ] Ensure the Title is still displayed.
 - [ ] Decide whether to pass the entire Entity or to only pass an ID using an Intent.
 
 ### Implementing Room For Data Management
 
-- [ ] Set up Room in the App and modify the Task Class to be an Entity.
+- [X] Set up Room in the App and modify the Task Class to be an Entity.
 
 ### Styling and Stretch Goals
 
@@ -78,6 +78,7 @@ Stretch goals:
 
 ### Latest Updates
 
+The solution is incomplete, so no screenshots have been provided.
 
 ### Previous Updates In Descending Order
 
