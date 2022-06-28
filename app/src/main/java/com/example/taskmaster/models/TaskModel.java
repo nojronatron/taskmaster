@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey;
 
 @Entity
 public class TaskModel {
-    @PrimaryKey(autoGenerate=true)
+    @PrimaryKey(autoGenerate = true)
     private Long id;
 
     private String title;
@@ -15,7 +15,8 @@ public class TaskModel {
     private String state; // New, Assigned, In Progress, or Completed
 
     @Ignore
-    public TaskModel(){} // TODO: Decide if @Ignore is needed here or at other CTOR for Room.
+    public TaskModel() {
+    } // TODO: Decide if @Ignore is needed here or at other CTOR for Room.
 
     public TaskModel(String title, String body) {
         this.title = title;
@@ -65,10 +66,10 @@ public class TaskModel {
         if (this.state.equals("Assigned")) {
             this.state = "In Progress";
         }
-        if(this.state.equals("New")) {
+        if (this.state.equals("New")) {
             this.state = "Assigned";
         }
-        if (this.state.equals("")){
+        if (this.state.equals("")) {
             this.state = "New";
         }
     }
@@ -78,5 +79,32 @@ public class TaskModel {
     public String toString() {
         // TODO: Confirm this is a good thing to actually do.
         return String.format("%1$s: %2$s", this.title, this.body);
+    }
+
+    public enum StateCategoryEnum {
+        NEW("New"),
+        ASSIGNED("Assigned"),
+        IN_PROGRESS("In Progress"),
+        COMPLETED("Completed");
+
+        private final String stateText;
+
+        StateCategoryEnum(String statusText) {
+            this.stateText = statusText;
+        }
+
+        public String getStateText() {
+            return stateText;
+        }
+
+        public static StateCategoryEnum fromString(String inputStatusText) {
+            for (StateCategoryEnum state : StateCategoryEnum.values()) {
+                if (state.stateText.equals(inputStatusText)) {
+                    return state;
+                }
+            }
+
+            return null;
+        }
     }
 }
