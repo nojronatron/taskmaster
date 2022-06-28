@@ -114,7 +114,7 @@ The solution is incomplete, so no screenshots have been provided.
 
 ## Tests
 
-- [ ] Write unittests for any custom methods built.
+- [X] Write unittests for any custom methods built.
 
 *From hereon out* utilize Espresso Tests to validate functionality.
 
