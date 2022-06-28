@@ -2,6 +2,7 @@ package com.example.taskmaster.models;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity
@@ -13,6 +14,7 @@ public class TaskModel {
     private String body;
     private String state; // New, Assigned, In Progress, or Completed
 
+    @Ignore
     public TaskModel(){} // TODO: Decide if @Ignore is needed here or at other CTOR for Room.
 
     public TaskModel(String title, String body) {

@@ -77,10 +77,11 @@ public class HomeActivity extends AppCompatActivity {
         String userNickname = preferences.getString(UserSettings.USER_NAME_KEY, "Foo");
         // set users custom name to the View
         TextView userCustomNameText = findViewById(R.id.homeTasksListTitleTextVIew);
-        userNickname.setText(userCustomNameText);
+        userCustomNameText.setText(userNickname);
 
-
-        // TODO: I am here
+        tasks.clear();
+        tasks.addAll(taskMasterDatabase.taskDao().findAll());
+        adapter.notifyDataSetChanged();
     }
 
     private void setupAddTaskButton() {
@@ -126,13 +127,14 @@ public class HomeActivity extends AppCompatActivity {
 
         // TODO: Remove this hard coded tasks list?
         // create Task list
-        ArrayList<TaskModel> tasks = new ArrayList<>();
-        tasks.add(new TaskModel("Buy Groceries", "Milk, Juice, Eggs, and a stick of butter."));
-        tasks.add(new TaskModel("Do Laundry", "Wash, dry, fold, put away."));
-        tasks.add(new TaskModel("Vacuum", "The floors are covered in dog hair. Deal with it."));
+//        ArrayList<TaskModel> tasks = new ArrayList<>();
+//        tasks.add(new TaskModel("Buy Groceries", "Milk, Juice, Eggs, and a stick of butter."));
+//        tasks.add(new TaskModel("Do Laundry", "Wash, dry, fold, put away."));
+//        tasks.add(new TaskModel("Vacuum", "The floors are covered in dog hair. Deal with it."));
 
         // create and attach the recyclerview adapter and set the adapter recyclerview
-        TaskListRecyclerViewAdapter adapter = new TaskListRecyclerViewAdapter(tasks, this);
+        // Note: Had to cast tasks to ArrayList<T> from List<T> for adapter to accept the return
+        adapter = new TaskListRecyclerViewAdapter((ArrayList<TaskModel>)tasks, this);
         tasksRecyclerView.setAdapter(adapter);
     }
 
