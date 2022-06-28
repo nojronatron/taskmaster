@@ -6,7 +6,7 @@ import androidx.room.TypeConverter;
 
 import java.util.Date;
 
-public class dbConverters {
+public class TaskMasterConverters {
 
     @TypeConverter
     public static Date fromTimeStamp(Long value) {
