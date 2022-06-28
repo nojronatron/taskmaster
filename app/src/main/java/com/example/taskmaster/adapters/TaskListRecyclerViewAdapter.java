@@ -1,4 +1,4 @@
-package com.example.taskmaster;
+package com.example.taskmaster.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,6 +9,11 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.taskmaster.HomeActivity;
+import com.example.taskmaster.R;
+import com.example.taskmaster.activites.TaskDetailActivity;
+import com.example.taskmaster.models.TaskModel;
 
 import java.util.ArrayList;
 

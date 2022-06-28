@@ -1,11 +1,13 @@
-package com.example.taskmaster;
+package com.example.taskmaster.activites;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.widget.TextView;
+
+import com.example.taskmaster.HomeActivity;
+import com.example.taskmaster.R;
 
 public class TaskDetailActivity extends AppCompatActivity {
 

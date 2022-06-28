@@ -8,6 +8,13 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.widget.Button;
+
+import com.example.taskmaster.activites.AddTask;
+import com.example.taskmaster.activites.AllTasks;
+import com.example.taskmaster.adapters.TaskListRecyclerViewAdapter;
+import com.example.taskmaster.fragments.UserSettings;
+import com.example.taskmaster.models.TaskModel;
+
 import java.util.ArrayList;
 
 public class HomeActivity extends AppCompatActivity {
