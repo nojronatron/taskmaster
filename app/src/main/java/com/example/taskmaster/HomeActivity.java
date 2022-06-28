@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.taskmaster.activites.AddTask;
 import com.example.taskmaster.activites.AllTasks;
@@ -64,12 +65,22 @@ public class HomeActivity extends AppCompatActivity {
         tasks = taskMasterDatabase.taskDao().findAll();
 
         setupAddTaskButton();
-
         setupLoadAllTasksActivityButton();
-
         setUpUserSettingsButton();
-
         setUpTasksRecyclerView();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // get users custom entered name, use Foo as default
+        String userNickname = preferences.getString(UserSettings.USER_NAME_KEY, "Foo");
+        // set users custom name to the View
+        TextView userCustomNameText = findViewById(R.id.homeTasksListTitleTextVIew);
+        userNickname.setText(userCustomNameText);
+
+
+        // TODO: I am here
     }
 
     private void setupAddTaskButton() {
@@ -112,7 +123,7 @@ public class HomeActivity extends AppCompatActivity {
         RecyclerView tasksRecyclerView = findViewById(R.id.homeTaskListRecyclerView);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         tasksRecyclerView.setLayoutManager(layoutManager);
-        
+
         // TODO: Remove this hard coded tasks list?
         // create Task list
         ArrayList<TaskModel> tasks = new ArrayList<>();

@@ -7,11 +7,10 @@
     tools:context=".HomeActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/homeTasksListTitleTextVIew"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:text="My Tasks"
         android:textSize="34sp"
         android:textStyle="bold"
         android:typeface="normal"
@@ -64,6 +63,6 @@
         app:layout_constraintBottom_toTopOf="@+id/homeAllTasksButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/homeTasksListTitleTextVIew" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
