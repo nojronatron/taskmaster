@@ -3,6 +3,8 @@ package com.example.taskmaster;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -17,6 +19,7 @@ import com.example.taskmaster.fragments.UserSettings;
 import com.example.taskmaster.models.TaskModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -30,8 +33,14 @@ public class HomeActivity extends AppCompatActivity {
     TaskMasterDatabase taskMasterDatabase;
     public static final String DATABASE_NAME = "task_master";
 
+    // reference to store DB contents
+    List<TaskModel> tasks = null;
+
     // declare shared preferences for storing data
     SharedPreferences preferences;
+
+    // RecyclerView adapter reference
+    TaskListRecyclerViewAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +50,29 @@ public class HomeActivity extends AppCompatActivity {
         // initialize shared preferences
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
+        // database builder
+        taskMasterDatabase = Room.databaseBuilder(
+                getApplicationContext(), // single db for all Activities
+                TaskMasterDatabase.class,
+                DATABASE_NAME
+        )
+                .allowMainThreadQueries() // for exploratory purposes only NOT production
+                .fallbackToDestructiveMigration() // toss old DB and all data, start again not good for prod
+                .build();
+
+        // assign results of Dao call to findAll method to local tasks field
+        tasks = taskMasterDatabase.taskDao().findAll();
+
+        setupAddTaskButton();
+
+        setupLoadAllTasksActivityButton();
+
+        setUpUserSettingsButton();
+
+        setUpTasksRecyclerView();
+    }
+
+    private void setupAddTaskButton() {
         // Set onclick button event handling to add a task
         Button addTaskButton = HomeActivity.this.findViewById(R.id.homeAddTaskButton);
 
@@ -48,7 +80,9 @@ public class HomeActivity extends AppCompatActivity {
             Intent goToAddTaskActivity = new Intent(HomeActivity.this, AddTask.class);
             startActivity(goToAddTaskActivity);
         });
+    }
 
+    private void setupLoadAllTasksActivityButton() {
         // Set onclick button event handling to all tasks
         Button allTasksButton = HomeActivity.this.findViewById(R.id.homeAllTasksButton);
 
@@ -56,7 +90,9 @@ public class HomeActivity extends AppCompatActivity {
             Intent goToAllTasksActivity = new Intent(HomeActivity.this, AllTasks.class);
             startActivity(goToAllTasksActivity);
         });
+    }
 
+    private void setUpUserSettingsButton() {
         // Set onclick button event handling to UserSettings Activity
         Button userSettingsButton = HomeActivity.this.findViewById(R.id.homeUserSettingsButton);
 
@@ -64,8 +100,6 @@ public class HomeActivity extends AppCompatActivity {
             Intent goToUserSettingsActivity = new Intent(HomeActivity.this, UserSettings.class);
             startActivity(goToUserSettingsActivity);
         });
-
-        setUpTasksRecyclerView();
     }
 
     /**
@@ -78,7 +112,8 @@ public class HomeActivity extends AppCompatActivity {
         RecyclerView tasksRecyclerView = findViewById(R.id.homeTaskListRecyclerView);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         tasksRecyclerView.setLayoutManager(layoutManager);
-
+        
+        // TODO: Remove this hard coded tasks list?
         // create Task list
         ArrayList<TaskModel> tasks = new ArrayList<>();
         tasks.add(new TaskModel("Buy Groceries", "Milk, Juice, Eggs, and a stick of butter."));
