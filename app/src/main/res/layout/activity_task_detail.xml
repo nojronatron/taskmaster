@@ -5,6 +5,7 @@
     android:id="@+id/taskDetailBackground"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/Azure"
     tools:context=".activites.TaskDetailActivity">
 
     <TextView
@@ -26,7 +27,7 @@
         android:layout_marginStart="100dp"
         android:layout_marginEnd="100dp"
         android:layout_marginBottom="52dp"
-        android:text="Button"
+        android:text="Back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
