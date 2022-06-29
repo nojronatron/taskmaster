@@ -1,11 +1,16 @@
-package com.example.taskmaster;
+package com.example.taskmaster.activites;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
+import android.widget.Button;
 import android.widget.TextView;
+
+import com.example.taskmaster.HomeActivity;
+import com.example.taskmaster.R;
+import com.example.taskmaster.database.TaskMasterDatabase;
 
 public class TaskDetailActivity extends AppCompatActivity {
 
@@ -29,5 +34,15 @@ public class TaskDetailActivity extends AppCompatActivity {
 
         // update the text fields by references
         taskDetailDescriptionText.setText(selectedTaskDetails);
+
+        setupExitPageButton();
+        }
+
+    private void setupExitPageButton() {
+        Button taskDetailExitButton = TaskDetailActivity.this.findViewById(R.id.taskDetailExitButton);
+        taskDetailExitButton.setOnClickListener( view -> {
+            finish();
+        });
     }
+
 }

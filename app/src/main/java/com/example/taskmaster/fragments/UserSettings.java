@@ -1,4 +1,4 @@
-package com.example.taskmaster;
+package com.example.taskmaster.fragments;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.taskmaster.R;
 
 public class UserSettings extends AppCompatActivity {
 
@@ -54,6 +56,8 @@ public class UserSettings extends AppCompatActivity {
                 Toast.makeText(
                         UserSettings.this, "Your changes have been saved.",
                         Toast.LENGTH_SHORT).show();
+
+                finish();
             }
         });
     }

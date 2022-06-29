@@ -3,23 +3,43 @@ package com.example.taskmaster;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.widget.Button;
+import android.widget.TextView;
+
+import com.example.taskmaster.activites.AddTask;
+import com.example.taskmaster.activites.AllTasks;
+import com.example.taskmaster.adapters.TaskListRecyclerViewAdapter;
+import com.example.taskmaster.database.TaskMasterDatabase;
+import com.example.taskmaster.fragments.UserSettings;
+import com.example.taskmaster.models.TaskModel;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
 
     // declare public static final type fields to create keys to associate with preference editor store
-    public static final String TASK_TITLE = null;
-    public static final String TASK_STATE = null;
-    public static final String TASK_BODY = null;
     public static final String SELECTED_TASK_DETAILS = null;
+    public static final String TITLE_TEXT_SUFFIX = "'s Task List";
+
+    // set a reference to the Room Database
+    TaskMasterDatabase taskMasterDatabase;
+    public static final String DATABASE_NAME = "task_master";
+
+    // reference to store DB contents
+    List<TaskModel> tasks = null;
 
     // declare shared preferences for storing data
     SharedPreferences preferences;
+
+    // RecyclerView adapter reference
+    TaskListRecyclerViewAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +49,47 @@ public class HomeActivity extends AppCompatActivity {
         // initialize shared preferences
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
+        // database builder
+        taskMasterDatabase = Room.databaseBuilder(
+                        getApplicationContext(), // single db for all Activities
+                        TaskMasterDatabase.class,
+                        DATABASE_NAME
+                )
+                .allowMainThreadQueries() // for exploratory purposes only NOT production
+                .fallbackToDestructiveMigration() // toss old DB and all data, start again not good for prod
+                .build();
+
+        // assign results of Dao call to findAll method to local tasks field
+        tasks = taskMasterDatabase.taskDao().findAll();
+
+        // launch common methods to perform required tasks
+        setTitleText();
+        setupAddTaskButton();
+        setupLoadAllTasksActivityButton();
+        setUpUserSettingsButton();
+        setUpTasksRecyclerView();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setTitleText();
+        tasks.clear();
+        tasks.addAll(taskMasterDatabase.taskDao().findAll());
+        adapter.notifyDataSetChanged();
+    }
+
+    private void setTitleText() {
+        // get users custom entered name but if not set use Current User as default
+        String userNicknamePrefix = preferences.getString(UserSettings.USER_NAME_KEY, "Current User");
+        String userNickname = String.format("%1s%2s", userNicknamePrefix, TITLE_TEXT_SUFFIX);
+
+        // set users custom name to the View
+        TextView userCustomNameText = findViewById(R.id.homeTasksListTitleTextVIew);
+        userCustomNameText.setText(userNickname);
+    }
+
+    private void setupAddTaskButton() {
         // Set onclick button event handling to add a task
         Button addTaskButton = HomeActivity.this.findViewById(R.id.homeAddTaskButton);
 
@@ -36,7 +97,9 @@ public class HomeActivity extends AppCompatActivity {
             Intent goToAddTaskActivity = new Intent(HomeActivity.this, AddTask.class);
             startActivity(goToAddTaskActivity);
         });
+    }
 
+    private void setupLoadAllTasksActivityButton() {
         // Set onclick button event handling to all tasks
         Button allTasksButton = HomeActivity.this.findViewById(R.id.homeAllTasksButton);
 
@@ -44,7 +107,9 @@ public class HomeActivity extends AppCompatActivity {
             Intent goToAllTasksActivity = new Intent(HomeActivity.this, AllTasks.class);
             startActivity(goToAllTasksActivity);
         });
+    }
 
+    private void setUpUserSettingsButton() {
         // Set onclick button event handling to UserSettings Activity
         Button userSettingsButton = HomeActivity.this.findViewById(R.id.homeUserSettingsButton);
 
@@ -52,8 +117,6 @@ public class HomeActivity extends AppCompatActivity {
             Intent goToUserSettingsActivity = new Intent(HomeActivity.this, UserSettings.class);
             startActivity(goToUserSettingsActivity);
         });
-
-        setUpTasksRecyclerView();
     }
 
     /**
@@ -67,15 +130,9 @@ public class HomeActivity extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         tasksRecyclerView.setLayoutManager(layoutManager);
 
-        // create Task list
-        ArrayList<TaskModel> tasks = new ArrayList<>();
-        tasks.add(new TaskModel("Buy Groceries", "Milk, Juice, Eggs, and a stick of butter."));
-        tasks.add(new TaskModel("Do Laundry", "Wash, dry, fold, put away."));
-        tasks.add(new TaskModel("Vacuum", "The floors are covered in dog hair. Deal with it."));
-
         // create and attach the recyclerview adapter and set the adapter recyclerview
-        TaskListRecyclerViewAdapter adapter = new TaskListRecyclerViewAdapter(tasks, this);
+        // Note: Had to cast tasks to ArrayList<T> from List<T> for adapter to accept the return
+        adapter = new TaskListRecyclerViewAdapter((ArrayList<TaskModel>) tasks, this);
         tasksRecyclerView.setAdapter(adapter);
     }
-
 }
