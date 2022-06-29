@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -34,7 +35,8 @@ public class AddTask extends AppCompatActivity {
                 .fallbackToDestructiveMigration()
                 .build();
 
-        setupAddThisButton();
+        setupAddThisButton(taskMasterDatabase);
+        this.setUpSpinner();
     }
 
     private void setUpSpinner() {
@@ -46,14 +48,24 @@ public class AddTask extends AppCompatActivity {
         ));
     }
 
-    private void setupAddThisButton() {
+    private void setupAddThisButton(TaskMasterDatabase db) {
         // Add event driven textbox change on button press
         Button addThisTaskButton = AddTask.this.findViewById(R.id.addThisTaskButton);
+        Spinner addTasksSpinner = AddTask.this.findViewById(R.id.addtaskTaskStatusSpinner);
+        EditText newTaskTitleEditText = findViewById(R.id.addTaskTaskTitleText);
+        EditText newTaskDescriptionEditText = findViewById(R.id.addTaskTaskDescriptionText);
 
         addThisTaskButton.setOnClickListener(view -> {
+            String newTaskDescription = newTaskDescriptionEditText.getText().toString();
+            String newTaskStatus = addTasksSpinner.getSelectedItem().toString();
+            String newTaskTitle = newTaskTitleEditText.getText().toString();
+            TaskModel newTask = new TaskModel(newTaskTitle, newTaskDescription, newTaskStatus);
             Log.i("", "Entered incrementTaskCounter lambda.");
             TextView successText = AddTask.this.findViewById(R.id.submittedText);
+            // execute TaskDao Insert method e.g. db.taskDao.insert(task)
+            db.taskDao().insertSingleTask(newTask);
             successText.setVisibility(View.VISIBLE);
+            finish();
         });
     }
 

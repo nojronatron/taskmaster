@@ -18,10 +18,10 @@ public class TaskModel {
     public TaskModel() {
     } // TODO: Decide if @Ignore is needed here or at other CTOR for Room.
 
-    public TaskModel(String title, String body) {
+    public TaskModel(String title, String body, String state) {
         this.title = title;
         this.body = body;
-        this.state = "New";
+        this.state = state;
     }
 
     public Long getId() {

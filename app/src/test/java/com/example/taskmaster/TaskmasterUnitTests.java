@@ -66,7 +66,7 @@ public class TaskmasterUnitTests {
     @Test
     public void testTaskModelToString() {
         String expectedResult = "Task Title - Body text";
-        TaskModel sut = new TaskModel("Task Title", "Body text");
+        TaskModel sut = new TaskModel("Task Title", "Body text", "New");
         String actualResult = sut.toString();
         System.out.println("Actual Result: " + actualResult);
         assertEquals("", expectedResult, actualResult);
