@@ -56,6 +56,8 @@ public class UserSettings extends AppCompatActivity {
                 Toast.makeText(
                         UserSettings.this, "Your changes have been saved.",
                         Toast.LENGTH_SHORT).show();
+
+                finish();
             }
         });
     }

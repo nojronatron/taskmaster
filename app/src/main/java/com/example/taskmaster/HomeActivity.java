@@ -25,10 +25,8 @@ import java.util.List;
 public class HomeActivity extends AppCompatActivity {
 
     // declare public static final type fields to create keys to associate with preference editor store
-    public static final String TASK_TITLE = null;
-    public static final String TASK_STATE = null;
-    public static final String TASK_BODY = null;
     public static final String SELECTED_TASK_DETAILS = null;
+    public static final String TITLE_TEXT_SUFFIX = "'s Task List";
 
     // set a reference to the Room Database
     TaskMasterDatabase taskMasterDatabase;
@@ -53,10 +51,10 @@ public class HomeActivity extends AppCompatActivity {
 
         // database builder
         taskMasterDatabase = Room.databaseBuilder(
-                getApplicationContext(), // single db for all Activities
-                TaskMasterDatabase.class,
-                DATABASE_NAME
-        )
+                        getApplicationContext(), // single db for all Activities
+                        TaskMasterDatabase.class,
+                        DATABASE_NAME
+                )
                 .allowMainThreadQueries() // for exploratory purposes only NOT production
                 .fallbackToDestructiveMigration() // toss old DB and all data, start again not good for prod
                 .build();
@@ -64,6 +62,8 @@ public class HomeActivity extends AppCompatActivity {
         // assign results of Dao call to findAll method to local tasks field
         tasks = taskMasterDatabase.taskDao().findAll();
 
+        // launch common methods to perform required tasks
+        setTitleText();
         setupAddTaskButton();
         setupLoadAllTasksActivityButton();
         setUpUserSettingsButton();
@@ -73,15 +73,20 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        // get users custom entered name, use Foo as default
-        String userNickname = preferences.getString(UserSettings.USER_NAME_KEY, "Foo");
-        // set users custom name to the View
-        TextView userCustomNameText = findViewById(R.id.homeTasksListTitleTextVIew);
-        userCustomNameText.setText(userNickname);
-
+        setTitleText();
         tasks.clear();
         tasks.addAll(taskMasterDatabase.taskDao().findAll());
         adapter.notifyDataSetChanged();
+    }
+
+    private void setTitleText() {
+        // get users custom entered name but if not set use Current User as default
+        String userNicknamePrefix = preferences.getString(UserSettings.USER_NAME_KEY, "Current User");
+        String userNickname = String.format("%1s%2s", userNicknamePrefix, TITLE_TEXT_SUFFIX);
+
+        // set users custom name to the View
+        TextView userCustomNameText = findViewById(R.id.homeTasksListTitleTextVIew);
+        userCustomNameText.setText(userNickname);
     }
 
     private void setupAddTaskButton() {
@@ -125,16 +130,9 @@ public class HomeActivity extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         tasksRecyclerView.setLayoutManager(layoutManager);
 
-        // create Task list
-//        ArrayList<TaskModel> tasks = new ArrayList<>();
-//        tasks.add(new TaskModel("Buy Groceries", "Milk, Juice, Eggs, and a stick of butter."));
-//        tasks.add(new TaskModel("Do Laundry", "Wash, dry, fold, put away."));
-//        tasks.add(new TaskModel("Vacuum", "The floors are covered in dog hair. Deal with it."));
-
         // create and attach the recyclerview adapter and set the adapter recyclerview
         // Note: Had to cast tasks to ArrayList<T> from List<T> for adapter to accept the return
-        adapter = new TaskListRecyclerViewAdapter((ArrayList<TaskModel>)tasks, this);
+        adapter = new TaskListRecyclerViewAdapter((ArrayList<TaskModel>) tasks, this);
         tasksRecyclerView.setAdapter(adapter);
     }
-
 }

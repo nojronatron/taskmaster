@@ -45,22 +45,78 @@ public class TaskmasterUnitTests {
 
     @Test
     public void testTaskModelCtorBlank() {
-
+        TaskModel sut = new TaskModel();
+        assertNotNull("Empty constructor should create an instance.", sut);
     }
 
     @Test
-    public void testTaskModelCtorTwoParams() {
-
+    public void testTaskModelCtorThreeParams() {
+        TaskModel sut = new TaskModel("Title", "Details", "New");
+        assertNotNull("TaskModel instantiation should create non-null object",
+                sut);
     }
 
     @Test
-    public void testTaskModelGettersAndSettersTBD() {
-        // this may end up being multiple tests
+    public void testTaskModelGettersAndSetters() {
+        String expectedTitle = "Title";
+        String expectedBody = "Body";
+        String expectedState = "New";
+        TaskModel sut = new TaskModel(expectedTitle, expectedBody, expectedState);
+
+        String actualBody = sut.getBody();
+        String actualTitle = sut.getTitle();
+        String actualState = sut.getState();
+
+        assertEquals("",expectedBody, actualBody);
+        assertEquals("",expectedState, actualState);
+        assertEquals("",expectedTitle, actualTitle);
+
+        expectedTitle = "NewTitle";
+        expectedBody = "New Body";
+        expectedState = "Completed";
+
+        sut.setBody(expectedBody);
+        sut.setState(expectedState);
+        sut.setTitle(expectedTitle);
+
+        actualBody = sut.getBody();
+        actualTitle = sut.getTitle();
+        actualState = sut.getState();
+
+        assertEquals("",expectedBody, actualBody);
+        assertEquals("",expectedState, actualState);
+        assertEquals("",expectedTitle, actualTitle);
     }
 
     @Test
     public void testTaskModelIncrementState() {
-        // four or more tests here
+        String expectedStartingState = "New";
+        String expectedState = "Assigned";
+        TaskModel sut = new TaskModel("Title", "Details", expectedStartingState);
+
+        String actualStartingState = sut.getState();
+        sut.incrementState();
+        String actualResult = sut.getState();
+        assertEquals("Increment method should change State from New to In Assigned.",
+                expectedState, actualResult);
+
+        sut.incrementState();
+        expectedState = "In Progress";
+        actualResult = sut.getState();
+        assertEquals("Increment method should change State from Assigned to In Progress.",
+                expectedState, actualResult);
+
+        sut.incrementState();
+        expectedState = "Completed";
+        actualResult = sut.getState();
+        assertEquals("Increment method should change State from In Process to Completed.",
+                expectedState, actualResult);
+
+        sut.incrementState();
+        expectedState = "Completed";
+        actualResult = sut.getState();
+        assertEquals("Increment method should not increment State from Completed.",
+                expectedState, actualResult);
     }
 
     @Test

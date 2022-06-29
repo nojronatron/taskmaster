@@ -15,8 +15,7 @@ public class TaskModel {
     private String state; // New, Assigned, In Progress, or Completed
 
     @Ignore
-    public TaskModel() {
-    } // TODO: Decide if @Ignore is needed here or at other CTOR for Room.
+    public TaskModel() { }
 
     public TaskModel(String title, String body, String state) {
         this.title = title;
