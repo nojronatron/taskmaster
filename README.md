@@ -22,6 +22,15 @@ Monday 27-June:
 - Modified AddTask to utilize local DB.
 - Set up Details Page to show Task Description and Title.
 
+Tuesday 28-June:
+
+- Completed Room DB integration.
+- Updated style and added a background.
+- Added 4 new Esspresso Tests.
+- Added unittests.
+- Fixed back-button functionality.
+- Added ability to destroy certain Activities after work is completed using built-in 'finish()' method.
+
 ## Feature Tasks
 
 Feature Tasks are broken down into the following sub sections.
@@ -42,14 +51,14 @@ Feature Tasks are broken down into the following sub sections.
 - [X] Implement a ViewAdapter class to display data from list of Tasks
 - [X] Create at least 3 hard-coded tasks in ~~MainActivity~~ HomeActivity.
 - [X] A tapped task in RecyclerView will launch the ~~DetailPage~~ TaskDetailActivity with the correct Task Title displayed.
-- [ ] Refactor RecyclerView to display all Task Entities in the Database.
+- [X] Refactor RecyclerView to display all Task Entities in the Database.
 
 ### Add a Task
 
 - [X] The “Add a Task” page allows users to type in details about a new task.
 - [X] Must show a title and a body.
 - [X] When users click the “submit” button, show a “submitted!” label on the page.
-- [ ] Modify Add Task Form to save data entered as a Task in the local database. *in process*
+- [X] Modify Add Task Form to save data entered as a Task in the local database.
 
 ### All Tasks
 
@@ -57,9 +66,9 @@ Feature Tasks are broken down into the following sub sections.
 
 ### Details Tasks
 
-- [ ] Ensure the description and status of a tapped task are also displayed on the detail page.
-- [ ] Ensure the Title is still displayed.
-- [ ] Decide whether to pass the entire Entity or to only pass an ID using an Intent.
+- [X] Ensure the description and status of a tapped task are also displayed on the detail page.
+- [X] Ensure the Title is still displayed.
+- [X] ~~Decide whether to pass the entire Entity or to~~ only pass ~~an ID~~ using an Intent.
 
 ### Implementing Room For Data Management
 
@@ -124,4 +133,6 @@ Link to [Espresso Tests Package](./app/src/androidTest/java/com/example/taskmast
 
 ## References and Attributions
 
-As a guide I utilized the Class Repository and this [Medium.com article](https://medium.com/@haxzie/using-intents-and-extras-to-pass-data-between-activities-android-beginners-guide-565239407ba0)
+As a guide I referenced the Class Repository and this [Medium.com article](https://medium.com/@haxzie/using-intents-and-extras-to-pass-data-between-activities-android-beginners-guide-565239407ba0)
+
+Additional *thanks!* go to code samurai and troubleshooting master [Roger Reyes](https://github.com/RogerMReyes)
