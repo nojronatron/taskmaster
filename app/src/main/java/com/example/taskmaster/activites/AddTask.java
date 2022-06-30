@@ -1,7 +1,6 @@
 package com.example.taskmaster.activites;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Room;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -13,12 +12,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.taskmaster.R;
-import com.example.taskmaster.database.TaskMasterDatabase;
 import com.example.taskmaster.models.TaskModel;
 
 public class AddTask extends AppCompatActivity {
 
-    TaskMasterDatabase taskMasterDatabase;
     public static final String DATABASE_NAME = "task_master";
 
     @Override
@@ -26,16 +23,16 @@ public class AddTask extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_task);
 
-        taskMasterDatabase = Room.databaseBuilder(
-                        getApplicationContext(),
-                        TaskMasterDatabase.class,
-                        DATABASE_NAME
-                )
-                .allowMainThreadQueries()
-                .fallbackToDestructiveMigration()
-                .build();
-
-        setupAddThisButton(taskMasterDatabase);
+//        taskMasterDatabase = Room.databaseBuilder(
+//                        getApplicationContext(),
+//                        TaskMasterDatabase.class,
+//                        DATABASE_NAME
+//                )
+//                .allowMainThreadQueries()
+//                .fallbackToDestructiveMigration()
+//                .build();
+//
+//        setupAddThisButton(taskMasterDatabase);
         this.setUpSpinner();
     }
 
@@ -48,7 +45,7 @@ public class AddTask extends AppCompatActivity {
         ));
     }
 
-    private void setupAddThisButton(TaskMasterDatabase db) {
+    private void setupAddThisButton(){//TaskMasterDatabase db) {
         // Add event driven textbox change on button press
         Button addThisTaskButton = AddTask.this.findViewById(R.id.addThisTaskButton);
         Spinner addTasksSpinner = AddTask.this.findViewById(R.id.addtaskTaskStatusSpinner);
@@ -63,7 +60,7 @@ public class AddTask extends AppCompatActivity {
             Log.i("", "Entered incrementTaskCounter lambda.");
             TextView successText = AddTask.this.findViewById(R.id.submittedText);
             // execute TaskDao Insert method e.g. db.taskDao.insert(task)
-            db.taskDao().insertSingleTask(newTask);
+//            db.taskDao().insertSingleTask(newTask);
             successText.setVisibility(View.VISIBLE);
             finish();
         });

@@ -1,7 +1,6 @@
 package com.example.taskmaster.activites;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,7 +9,6 @@ import android.widget.TextView;
 
 import com.example.taskmaster.HomeActivity;
 import com.example.taskmaster.R;
-import com.example.taskmaster.database.TaskMasterDatabase;
 
 public class TaskDetailActivity extends AppCompatActivity {
 

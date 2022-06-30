@@ -3,7 +3,6 @@ package com.example.taskmaster;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Room;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,7 +14,6 @@ import android.widget.TextView;
 import com.example.taskmaster.activites.AddTask;
 import com.example.taskmaster.activites.AllTasks;
 import com.example.taskmaster.adapters.TaskListRecyclerViewAdapter;
-import com.example.taskmaster.database.TaskMasterDatabase;
 import com.example.taskmaster.fragments.UserSettings;
 import com.example.taskmaster.models.TaskModel;
 
@@ -29,8 +27,7 @@ public class HomeActivity extends AppCompatActivity {
     public static final String TITLE_TEXT_SUFFIX = "'s Task List";
 
     // set a reference to the Room Database
-    TaskMasterDatabase taskMasterDatabase;
-    public static final String DATABASE_NAME = "task_master";
+//    public static final String DATABASE_NAME = "task_master";
 
     // reference to store DB contents
     List<TaskModel> tasks = null;
@@ -50,17 +47,17 @@ public class HomeActivity extends AppCompatActivity {
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         // database builder
-        taskMasterDatabase = Room.databaseBuilder(
-                        getApplicationContext(), // single db for all Activities
-                        TaskMasterDatabase.class,
-                        DATABASE_NAME
-                )
-                .allowMainThreadQueries() // for exploratory purposes only NOT production
-                .fallbackToDestructiveMigration() // toss old DB and all data, start again not good for prod
-                .build();
-
-        // assign results of Dao call to findAll method to local tasks field
-        tasks = taskMasterDatabase.taskDao().findAll();
+//        taskMasterDatabase = Room.databaseBuilder(
+//                        getApplicationContext(), // single db for all Activities
+//                        TaskMasterDatabase.class,
+//                        DATABASE_NAME
+//                )
+//                .allowMainThreadQueries() // for exploratory purposes only NOT production
+//                .fallbackToDestructiveMigration() // toss old DB and all data, start again not good for prod
+//                .build();
+//
+//        // assign results of Dao call to findAll method to local tasks field
+//        tasks = taskMasterDatabase.taskDao().findAll();
 
         // launch common methods to perform required tasks
         setTitleText();
@@ -74,8 +71,8 @@ public class HomeActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         setTitleText();
-        tasks.clear();
-        tasks.addAll(taskMasterDatabase.taskDao().findAll());
+//        tasks.clear();
+//        tasks.addAll(taskMasterDatabase.taskDao().findAll());
         adapter.notifyDataSetChanged();
     }
 

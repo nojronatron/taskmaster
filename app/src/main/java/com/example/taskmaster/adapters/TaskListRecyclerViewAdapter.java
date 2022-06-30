@@ -74,7 +74,8 @@ public class TaskListRecyclerViewAdapter extends RecyclerView.Adapter<TaskListRe
 
     @Override
     public int getItemCount() {
-        return tasks.size();
+//        return tasks.size();
+        return 0;
     }
 
     /**
