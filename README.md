@@ -7,9 +7,9 @@ Weds and Thurs, June 23 and 24:
 - Implemented Homepage, Add a Task, and All Tasks Activities. 
 - Configured layout of all three Activities. 
 - Enabled button-based navigation and retained back-button functionality. 
-- Added styling. 
+- Added styling.
 
-Saturday 25-June: 
+Saturday 25-June:
 
 - Implemented TaskModel to carry data.
 - Added RecyclerView on AllTasks Activity.
@@ -30,6 +30,17 @@ Tuesday 28-June:
 - Added unittests.
 - Fixed back-button functionality.
 - Added ability to destroy certain Activities after work is completed using built-in 'finish()' method.
+
+Wednesday 29-June:
+
+- Removed references to Room and previous Entity and Model "TaskModel".
+- Created a Task Resource using AWS Amplify CLI.
+- Refactored DB references to use AWS Amplify data instead of Room.
+- Modified Add Task Activity to save Task Data to DynamoDB.
+- Refactored HomeActivity RecyclerView to display DynamoDB entries.
+- Encapsulated Activities with entry-point Class "TaskMasterApplication".
+- Espresso Tests were not changed, and still operate.
+- Added screenshots of progress to this readme.
 
 ## Feature Tasks
 
@@ -87,7 +98,31 @@ Stretch goals:
 
 ### Latest Updates
 
-The solution is incomplete, so no screenshots have been provided.
+AWS Amplify-connected Implementation:
+
+Homepage:
+
+![](./app/screenshots/HomeActivity_CloudyWeds.png)
+
+User Settings - Change User Name:
+
+![](./app/screenshots/TaskMaster_UserSettings_CloudyWeds.png)
+
+Homepage - User Name Sticks:
+
+![](./app/screenshots/TaskMaster_MainActivity_UserSettings_CloudyWeds.png)
+
+Add Task - Spinner With Task Status Selections:
+
+![](./app/screenshots/TaskMaster_AddTask_Spinner_CloudyWeds.png)
+
+Homepage - Updated After Adding A Task (note the status is included):
+
+![](./app/screenshots/TaskMaster_UpdatedTaskList_CloudyWeds.png)
+
+Task Detail - Task Detail with Status (as assigned):
+
+![](./app/screenshots/TaskMaster_TaskDetail_CloudyWeds.png)
 
 ### Previous Updates In Descending Order
 

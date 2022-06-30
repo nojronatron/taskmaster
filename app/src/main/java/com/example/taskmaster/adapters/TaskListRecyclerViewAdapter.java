@@ -10,23 +10,24 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.amplifyframework.datastore.generated.model.Task;
 import com.example.taskmaster.HomeActivity;
 import com.example.taskmaster.R;
 import com.example.taskmaster.activites.TaskDetailActivity;
-import com.example.taskmaster.models.TaskModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Adapter to manage RecyclerView.
  */
-public class TaskListRecyclerViewAdapter extends RecyclerView.Adapter<TaskListRecyclerViewAdapter.TaskListViewHolder>{
+public class TaskListRecyclerViewAdapter extends RecyclerView.Adapter<TaskListRecyclerViewAdapter.TaskListViewHolder> {
 
     // data items stored in this field
-    ArrayList<TaskModel> tasks;
+    List<Task> tasks;
     Context callingActivity; // allows this class to accept context from the calling method
 
-    public TaskListRecyclerViewAdapter(ArrayList<TaskModel> tasks, Context callingActivity) {
+    public TaskListRecyclerViewAdapter(List<Task> tasks, Context callingActivity) {
         this.tasks = tasks;
         this.callingActivity = callingActivity;
     }
@@ -41,7 +42,7 @@ public class TaskListRecyclerViewAdapter extends RecyclerView.Adapter<TaskListRe
     @Override
     public void onBindViewHolder(@NonNull TaskListRecyclerViewAdapter.TaskListViewHolder holder, int position) {
         TextView taskFragmentTextView = holder.itemView.findViewById(R.id.fragTaskListFragment);
-        TaskModel selectedTask = tasks.get(position);
+        Task selectedTask = tasks.get(position);
 
         // humans don't number their task lists starting with zero
         int itemNumber = position + 1;
@@ -75,6 +76,7 @@ public class TaskListRecyclerViewAdapter extends RecyclerView.Adapter<TaskListRe
     @Override
     public int getItemCount() {
         return tasks.size();
+//        return 0;
     }
 
     /**

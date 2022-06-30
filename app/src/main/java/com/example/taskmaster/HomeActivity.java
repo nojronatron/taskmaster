@@ -3,21 +3,22 @@ package com.example.taskmaster;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Room;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.amplifyframework.api.graphql.model.ModelQuery;
+import com.amplifyframework.core.Amplify;
+import com.amplifyframework.datastore.generated.model.Task;
 import com.example.taskmaster.activites.AddTask;
 import com.example.taskmaster.activites.AllTasks;
 import com.example.taskmaster.adapters.TaskListRecyclerViewAdapter;
-import com.example.taskmaster.database.TaskMasterDatabase;
 import com.example.taskmaster.fragments.UserSettings;
-import com.example.taskmaster.models.TaskModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,13 +28,10 @@ public class HomeActivity extends AppCompatActivity {
     // declare public static final type fields to create keys to associate with preference editor store
     public static final String SELECTED_TASK_DETAILS = null;
     public static final String TITLE_TEXT_SUFFIX = "'s Task List";
-
-    // set a reference to the Room Database
-    TaskMasterDatabase taskMasterDatabase;
-    public static final String DATABASE_NAME = "task_master";
+    public static final String ACTIVITY_NAME = "HomeActivity";
 
     // reference to store DB contents
-    List<TaskModel> tasks = null;
+    List<Task> tasks = null;
 
     // declare shared preferences for storing data
     SharedPreferences preferences;
@@ -49,23 +47,14 @@ public class HomeActivity extends AppCompatActivity {
         // initialize shared preferences
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-        // database builder
-        taskMasterDatabase = Room.databaseBuilder(
-                        getApplicationContext(), // single db for all Activities
-                        TaskMasterDatabase.class,
-                        DATABASE_NAME
-                )
-                .allowMainThreadQueries() // for exploratory purposes only NOT production
-                .fallbackToDestructiveMigration() // toss old DB and all data, start again not good for prod
-                .build();
-
-        // assign results of Dao call to findAll method to local tasks field
-        tasks = taskMasterDatabase.taskDao().findAll();
+        // instantiate tasks list so runtime wont throw
+        tasks = new ArrayList<>();
 
         // launch common methods to perform required tasks
+        getTaskItemsFromDb();
         setTitleText();
         setupAddTaskButton();
-        setupLoadAllTasksActivityButton();
+//        setupLoadAllTasksActivityButton();
         setUpUserSettingsButton();
         setUpTasksRecyclerView();
     }
@@ -74,9 +63,27 @@ public class HomeActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         setTitleText();
-        tasks.clear();
-        tasks.addAll(taskMasterDatabase.taskDao().findAll());
-        adapter.notifyDataSetChanged();
+        getTaskItemsFromDb();
+    }
+
+    private void getTaskItemsFromDb() {
+        // todo: this might be related to error "int java.util.List.size() on null"
+
+        Amplify.API.query(
+                ModelQuery.list(Task.class),
+                success -> {
+                    Log.i(ACTIVITY_NAME, "Successfully loaded Tasks from GraphQL.");
+                    tasks.clear();
+
+                    for (Task task : success.getData()) {
+                        tasks.add(task);
+                    }
+
+                    runOnUiThread(() -> adapter.notifyDataSetChanged());
+                },
+
+                failure -> Log.i(ACTIVITY_NAME, "Read from GraphQL failed.")
+        );
     }
 
     private void setTitleText() {
@@ -114,7 +121,8 @@ public class HomeActivity extends AppCompatActivity {
         Button userSettingsButton = HomeActivity.this.findViewById(R.id.homeUserSettingsButton);
 
         userSettingsButton.setOnClickListener(view -> {
-            Intent goToUserSettingsActivity = new Intent(HomeActivity.this, UserSettings.class);
+            Intent goToUserSettingsActivity = new Intent(
+                    HomeActivity.this, UserSettings.class);
             startActivity(goToUserSettingsActivity);
         });
     }
@@ -132,7 +140,7 @@ public class HomeActivity extends AppCompatActivity {
 
         // create and attach the recyclerview adapter and set the adapter recyclerview
         // Note: Had to cast tasks to ArrayList<T> from List<T> for adapter to accept the return
-        adapter = new TaskListRecyclerViewAdapter((ArrayList<TaskModel>) tasks, this);
+        adapter = new TaskListRecyclerViewAdapter(tasks, this);
         tasksRecyclerView.setAdapter(adapter);
     }
 }
