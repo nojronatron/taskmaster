@@ -42,6 +42,10 @@ Wednesday 29-June:
 - Espresso Tests were not changed, and still operate.
 - Added screenshots of progress to this readme.
 
+Thursday 30-June:
+
+- Added Team model and implemented Bi-directional 'has many' relationship.
+
 ## Feature Tasks
 
 Feature Tasks are broken down into the following sub sections.
