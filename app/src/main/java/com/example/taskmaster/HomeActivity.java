@@ -54,7 +54,7 @@ public class HomeActivity extends AppCompatActivity {
         getTaskItemsFromDb();
         setTitleText();
         setupAddTaskButton();
-        setupLoadAllTasksActivityButton();
+//        setupLoadAllTasksActivityButton();
         setUpUserSettingsButton();
         setUpTasksRecyclerView();
     }

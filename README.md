@@ -7,9 +7,9 @@ Weds and Thurs, June 23 and 24:
 - Implemented Homepage, Add a Task, and All Tasks Activities. 
 - Configured layout of all three Activities. 
 - Enabled button-based navigation and retained back-button functionality. 
-- Added styling. 
+- Added styling.
 
-Saturday 25-June: 
+Saturday 25-June:
 
 - Implemented TaskModel to carry data.
 - Added RecyclerView on AllTasks Activity.
@@ -30,6 +30,16 @@ Tuesday 28-June:
 - Added unittests.
 - Fixed back-button functionality.
 - Added ability to destroy certain Activities after work is completed using built-in 'finish()' method.
+
+Wednesday 29-June:
+
+- Removed references to Room and previous Entity and Model "TaskModel".
+- Created a Task Resource using AWS Amplify CLI.
+- Refactored DB references to use AWS Amplify data instead of Room.
+- Modified Add Task Activity to save Task Data to DynamoDB.
+- Refactored HomeActivity RecyclerView to display DynamoDB entries.
+- Encapsulated Activities with entry-point Class "TaskMasterApplication".
+- Espresso Tests were not changed.
 
 ## Feature Tasks
 
