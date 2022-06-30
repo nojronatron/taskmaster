@@ -39,7 +39,8 @@ Wednesday 29-June:
 - Modified Add Task Activity to save Task Data to DynamoDB.
 - Refactored HomeActivity RecyclerView to display DynamoDB entries.
 - Encapsulated Activities with entry-point Class "TaskMasterApplication".
-- Espresso Tests were not changed.
+- Espresso Tests were not changed, and still operate.
+- Added screenshots of progress to this readme.
 
 ## Feature Tasks
 
@@ -97,7 +98,31 @@ Stretch goals:
 
 ### Latest Updates
 
-The solution is incomplete, so no screenshots have been provided.
+AWS Amplify-connected Implementation:
+
+Homepage:
+
+![](./app/screenshots/HomeActivity_CloudyWeds.png)
+
+User Settings - Change User Name:
+
+![](./app/screenshots/TaskMaster_UserSettings_CloudyWeds.png)
+
+Homepage - User Name Sticks:
+
+![](./app/screenshots/TaskMaster_MainActivity_UserSettings_CloudyWeds.png)
+
+Add Task - Spinner With Task Status Selections:
+
+![](./app/screenshots/TaskMaster_AddTask_Spinner_CloudyWeds.png)
+
+Homepage - Updated After Adding A Task (note the status is included):
+
+![](./app/screenshots/TaskMaster_UpdatedTaskList_CloudyWeds.png)
+
+Task Detail - Task Detail with Status (as assigned):
+
+![](./app/screenshots/TaskMaster_TaskDetail_CloudyWeds.png)
 
 ### Previous Updates In Descending Order
 
