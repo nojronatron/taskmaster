@@ -47,6 +47,9 @@ public class HomeActivity extends AppCompatActivity {
         // initialize shared preferences
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
+        // instantiate tasks list so runtime wont throw
+        tasks = new ArrayList<>();
+
         // launch common methods to perform required tasks
         getTaskItemsFromDb();
         setTitleText();
@@ -64,19 +67,19 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void getTaskItemsFromDb() {
+        // todo: this might be related to error "int java.util.List.size() on null"
+
         Amplify.API.query(
                 ModelQuery.list(Task.class),
                 success -> {
-                    Log.i(ACTIVITY_NAME, "Successully loaded Tasks from GraphQL.");
+                    Log.i(ACTIVITY_NAME, "Successfully loaded Tasks from GraphQL.");
                     tasks.clear();
 
                     for (Task task : success.getData()) {
                         tasks.add(task);
                     }
 
-                    runOnUiThread(() -> {
-                        adapter.notifyDataSetChanged();
-                    });
+                    runOnUiThread(() -> adapter.notifyDataSetChanged());
                 },
 
                 failure -> Log.i(ACTIVITY_NAME, "Read from GraphQL failed.")
@@ -137,7 +140,7 @@ public class HomeActivity extends AppCompatActivity {
 
         // create and attach the recyclerview adapter and set the adapter recyclerview
         // Note: Had to cast tasks to ArrayList<T> from List<T> for adapter to accept the return
-        adapter = new TaskListRecyclerViewAdapter((ArrayList<Task>) tasks, this);
+        adapter = new TaskListRecyclerViewAdapter(tasks, this);
         tasksRecyclerView.setAdapter(adapter);
     }
 }
