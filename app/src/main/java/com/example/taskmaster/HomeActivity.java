@@ -11,11 +11,11 @@ import android.preference.PreferenceManager;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.amplifyframework.datastore.generated.model.Task;
 import com.example.taskmaster.activites.AddTask;
 import com.example.taskmaster.activites.AllTasks;
 import com.example.taskmaster.adapters.TaskListRecyclerViewAdapter;
 import com.example.taskmaster.fragments.UserSettings;
-import com.example.taskmaster.models.TaskModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +30,7 @@ public class HomeActivity extends AppCompatActivity {
 //    public static final String DATABASE_NAME = "task_master";
 
     // reference to store DB contents
-    List<TaskModel> tasks = null;
+    List<Task> tasks = null;
 
     // declare shared preferences for storing data
     SharedPreferences preferences;
@@ -129,7 +129,7 @@ public class HomeActivity extends AppCompatActivity {
 
         // create and attach the recyclerview adapter and set the adapter recyclerview
         // Note: Had to cast tasks to ArrayList<T> from List<T> for adapter to accept the return
-        adapter = new TaskListRecyclerViewAdapter((ArrayList<TaskModel>) tasks, this);
+        adapter = new TaskListRecyclerViewAdapter((ArrayList<Task>) tasks, this);
         tasksRecyclerView.setAdapter(adapter);
     }
 }

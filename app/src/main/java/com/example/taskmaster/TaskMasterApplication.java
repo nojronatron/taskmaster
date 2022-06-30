@@ -4,6 +4,7 @@ import android.app.Application;
 import android.util.Log;
 
 import com.amplifyframework.AmplifyException;
+import com.amplifyframework.api.aws.AWSApiPlugin;
 import com.amplifyframework.core.Amplify;
 
 // this will be the new entrypoint for this app
@@ -14,6 +15,7 @@ public class TaskMasterApplication extends Application {
         super.onCreate();
 
         try {
+            Amplify.addPlugin(new AWSApiPlugin());
             Amplify.configure(getApplicationContext());
             Log.i("MyAmplifyApp", "Initialized Amplify");
         } catch (AmplifyException ampe) {
