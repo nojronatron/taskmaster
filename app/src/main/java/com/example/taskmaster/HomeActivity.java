@@ -8,9 +8,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.amplifyframework.api.graphql.model.ModelQuery;
+import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Task;
 import com.example.taskmaster.activites.AddTask;
 import com.example.taskmaster.activites.AllTasks;
@@ -25,9 +28,7 @@ public class HomeActivity extends AppCompatActivity {
     // declare public static final type fields to create keys to associate with preference editor store
     public static final String SELECTED_TASK_DETAILS = null;
     public static final String TITLE_TEXT_SUFFIX = "'s Task List";
-
-    // set a reference to the Room Database
-//    public static final String DATABASE_NAME = "task_master";
+    public static final String ACTIVITY_NAME = "HomeActivity";
 
     // reference to store DB contents
     List<Task> tasks = null;
@@ -46,20 +47,8 @@ public class HomeActivity extends AppCompatActivity {
         // initialize shared preferences
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-        // database builder
-//        taskMasterDatabase = Room.databaseBuilder(
-//                        getApplicationContext(), // single db for all Activities
-//                        TaskMasterDatabase.class,
-//                        DATABASE_NAME
-//                )
-//                .allowMainThreadQueries() // for exploratory purposes only NOT production
-//                .fallbackToDestructiveMigration() // toss old DB and all data, start again not good for prod
-//                .build();
-//
-//        // assign results of Dao call to findAll method to local tasks field
-//        tasks = taskMasterDatabase.taskDao().findAll();
-
         // launch common methods to perform required tasks
+        getTaskItemsFromDb();
         setTitleText();
         setupAddTaskButton();
         setupLoadAllTasksActivityButton();
@@ -71,9 +60,27 @@ public class HomeActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         setTitleText();
-//        tasks.clear();
-//        tasks.addAll(taskMasterDatabase.taskDao().findAll());
-        adapter.notifyDataSetChanged();
+        getTaskItemsFromDb();
+    }
+
+    private void getTaskItemsFromDb() {
+        Amplify.API.query(
+                ModelQuery.list(Task.class),
+                success -> {
+                    Log.i(ACTIVITY_NAME, "Successully loaded Tasks from GraphQL.");
+                    tasks.clear();
+
+                    for (Task task : success.getData()) {
+                        tasks.add(task);
+                    }
+
+                    runOnUiThread(() -> {
+                        adapter.notifyDataSetChanged();
+                    });
+                },
+
+                failure -> Log.i(ACTIVITY_NAME, "Read from GraphQL failed.")
+        );
     }
 
     private void setTitleText() {
@@ -111,7 +118,8 @@ public class HomeActivity extends AppCompatActivity {
         Button userSettingsButton = HomeActivity.this.findViewById(R.id.homeUserSettingsButton);
 
         userSettingsButton.setOnClickListener(view -> {
-            Intent goToUserSettingsActivity = new Intent(HomeActivity.this, UserSettings.class);
+            Intent goToUserSettingsActivity = new Intent(
+                    HomeActivity.this, UserSettings.class);
             startActivity(goToUserSettingsActivity);
         });
     }

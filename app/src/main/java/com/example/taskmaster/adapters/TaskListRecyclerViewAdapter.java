@@ -16,17 +16,18 @@ import com.example.taskmaster.R;
 import com.example.taskmaster.activites.TaskDetailActivity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Adapter to manage RecyclerView.
  */
-public class TaskListRecyclerViewAdapter extends RecyclerView.Adapter<TaskListRecyclerViewAdapter.TaskListViewHolder>{
+public class TaskListRecyclerViewAdapter extends RecyclerView.Adapter<TaskListRecyclerViewAdapter.TaskListViewHolder> {
 
     // data items stored in this field
-    ArrayList<Task> tasks;
+    List<Task> tasks;
     Context callingActivity; // allows this class to accept context from the calling method
 
-    public TaskListRecyclerViewAdapter(ArrayList<Task> tasks, Context callingActivity) {
+    public TaskListRecyclerViewAdapter(List<Task> tasks, Context callingActivity) {
         this.tasks = tasks;
         this.callingActivity = callingActivity;
     }
@@ -74,8 +75,8 @@ public class TaskListRecyclerViewAdapter extends RecyclerView.Adapter<TaskListRe
 
     @Override
     public int getItemCount() {
-//        return tasks.size();
-        return 0;
+        return tasks.size();
+//        return 0;
     }
 
     /**
