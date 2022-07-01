@@ -45,6 +45,7 @@ Wednesday 29-June:
 Thursday 30-June:
 
 - Added Team model and implemented Bi-directional 'has many' relationship.
+- Added 3 Teams (hard coded for now) via mutations.
 
 ## Feature Tasks
 

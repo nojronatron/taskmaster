@@ -12,9 +12,11 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Task;
+import com.amplifyframework.datastore.generated.model.Team;
 import com.example.taskmaster.activites.AddTask;
 import com.example.taskmaster.activites.AllTasks;
 import com.example.taskmaster.adapters.TaskListRecyclerViewAdapter;
@@ -32,6 +34,7 @@ public class HomeActivity extends AppCompatActivity {
 
     // reference to store DB contents
     List<Task> tasks = null;
+    List<Team> teams = null;
 
     // declare shared preferences for storing data
     SharedPreferences preferences;
@@ -47,10 +50,14 @@ public class HomeActivity extends AppCompatActivity {
         // initialize shared preferences
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-        // instantiate tasks list so runtime wont throw
+        // instantiate model instance lists so runtime wont throw
         tasks = new ArrayList<>();
+        teams = new ArrayList<>();
 
         // launch common methods to perform required tasks
+//        createTeams();
+
+        getTeamsFromDb();
         getTaskItemsFromDb();
         setTitleText();
         setupAddTaskButton();
@@ -66,9 +73,75 @@ public class HomeActivity extends AppCompatActivity {
         getTaskItemsFromDb();
     }
 
-    private void getTaskItemsFromDb() {
-        // todo: this might be related to error "int java.util.List.size() on null"
+    private void createTeams() {
+        teams.clear();
 
+        String teamAlphaName = "Team Alpha";
+        String teamBravoName = "Team Bravo";
+        String teamCharlieName = "Team Charlie";
+
+        Team teamAlpha = Team.builder()
+                .name(teamAlphaName)
+                .build();
+
+        Team teamBravo = Team.builder()
+                .name(teamBravoName)
+                .build();
+
+        Team teamCharlie = Team.builder()
+                .name(teamCharlieName)
+                .build();
+
+        Amplify.API.mutate(
+                ModelMutation.create(teamAlpha),
+                successResponse -> {
+                    Log.i(ACTIVITY_NAME, "Successfully created instance " +
+                            teamAlphaName + ". getName() returned: " + teamAlpha.getName());
+                    teams.add(teamAlpha);
+                },
+                failureResponse -> Log.i(ACTIVITY_NAME, "Failed creating instance " +
+                        teamAlphaName)
+        );
+
+        Amplify.API.mutate(
+                ModelMutation.create(teamBravo),
+                successResponse -> {
+                    Log.i(ACTIVITY_NAME, "Successfully created instance " +
+                            teamBravoName + ". getName() returned: " + teamBravo.getName());
+                    teams.add(teamBravo);
+                },
+                failureResponse -> Log.e(ACTIVITY_NAME, "Failed creating instance " +
+                        teamBravoName)
+        );
+
+        Amplify.API.mutate(
+                ModelMutation.create(teamCharlie),
+                successResponse -> {
+                    Log.i(ACTIVITY_NAME, "Successfully created instance " +
+                            teamCharlieName + ". getName() returned: " + teamCharlie.getName());
+                    teams.add(teamCharlie);
+                },
+                failureResponse -> Log.e(ACTIVITY_NAME, "Failed creating instance " +
+                        teamCharlieName)
+        );
+    }
+
+    private void getTeamsFromDb() {
+        Amplify.API.query(
+                ModelQuery.list(Team.class),
+                successResponse -> {
+                    Log.i(ACTIVITY_NAME, "Successfully queried DB for teams.");
+                    for (Team team: successResponse.getData()) {
+                        teams.add(team);
+                    }
+                },
+                failureResponse -> {
+                    Log.e(ACTIVITY_NAME, "Failed to query Teams in DB");
+                }
+        );
+    }
+
+    private void getTaskItemsFromDb() {
         Amplify.API.query(
                 ModelQuery.list(Task.class),
                 success -> {
@@ -106,15 +179,15 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
-    private void setupLoadAllTasksActivityButton() {
-        // Set onclick button event handling to all tasks
-        Button allTasksButton = HomeActivity.this.findViewById(R.id.homeAllTasksButton);
-
-        allTasksButton.setOnClickListener(view -> {
-            Intent goToAllTasksActivity = new Intent(HomeActivity.this, AllTasks.class);
-            startActivity(goToAllTasksActivity);
-        });
-    }
+//    private void setupLoadAllTasksActivityButton() {
+//        // Set onclick button event handling to all tasks
+//        Button allTasksButton = HomeActivity.this.findViewById(R.id.homeAllTasksButton);
+//
+//        allTasksButton.setOnClickListener(view -> {
+//            Intent goToAllTasksActivity = new Intent(HomeActivity.this, AllTasks.class);
+//            startActivity(goToAllTasksActivity);
+//        });
+//    }
 
     private void setUpUserSettingsButton() {
         // Set onclick button event handling to UserSettings Activity
