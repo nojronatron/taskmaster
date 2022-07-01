@@ -20,18 +20,24 @@ import com.example.taskmaster.R;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 public class AddTask extends AppCompatActivity {
 
     private static final String ACTIVITY_NAME = "AddTask Activity";
     List<Team> teams = null;
+    Spinner teamNamesSpinner = null;
+    CompletableFuture<List<Team>> teamsFuture = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_add_task);
-        this.setUpTaskStatusSpinner();
+        teamsFuture = new CompletableFuture<>();
+
         this.getTeamsFromDB();
+        this.setUpTaskStatusSpinner();
         this.setUpTeamNameSpinner();
         this.setupAddThisButton();
     }
@@ -41,6 +47,8 @@ public class AddTask extends AppCompatActivity {
                 ModelQuery.list(Team.class),
                 successResponse -> {
                     Log.i(ACTIVITY_NAME, "Successfully queried DB for teams.");
+                    teams = new ArrayList<>();
+
                     for (Team team: successResponse.getData()) {
                         teams.add(team);
                     }

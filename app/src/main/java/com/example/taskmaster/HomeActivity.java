@@ -55,6 +55,8 @@ public class HomeActivity extends AppCompatActivity {
         teams = new ArrayList<>();
 
         // launch common methods to perform required tasks
+
+        // only call createTeams to seed Team Data for the first time.
 //        createTeams();
 
         getTeamsFromDb();

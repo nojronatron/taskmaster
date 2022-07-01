@@ -46,6 +46,8 @@ Thursday 30-June:
 
 - Added Team model and implemented Bi-directional 'has many' relationship.
 - Added 3 Teams (hard coded for now) via mutations.
+- Deleted the AllTasks Activity (was not longer in use).
+- Added Spinner to select a Team on the AddTask Activity (In progress).
 
 ## Feature Tasks
 
@@ -75,6 +77,7 @@ Feature Tasks are broken down into the following sub sections.
 - [X] Must show a title and a body.
 - [X] When users click the “submit” button, show a “submitted!” label on the page.
 - [X] Modify Add Task Form to save data entered as a Task in the local database.
+- [ ] Add a Spinner to select a Team to assign/associate a Task to.
 
 ### All Tasks
 
