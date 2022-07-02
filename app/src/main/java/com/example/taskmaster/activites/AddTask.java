@@ -56,7 +56,7 @@ public class AddTask extends AppCompatActivity {
                         teamNames.add(team.getName());
                     }
 
-                    teamsFuture.complete(teams); // todo: verify this
+                    teamsFuture.complete(teams);
                     setUpTeamNameSpinner();
                 },
                 failureResponse -> {

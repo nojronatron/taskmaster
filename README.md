@@ -49,6 +49,10 @@ Thursday 30-June:
 - Deleted the AllTasks Activity (was not longer in use).
 - Added Spinner to select a Team on the AddTask Activity (In progress).
 
+Saturday 2-July:
+
+- Debugged adding Team to a Task, now functional and DB-backed.
+
 ## Feature Tasks
 
 Feature Tasks are broken down into the following sub sections.
@@ -77,7 +81,7 @@ Feature Tasks are broken down into the following sub sections.
 - [X] Must show a title and a body.
 - [X] When users click the “submit” button, show a “submitted!” label on the page.
 - [X] Modify Add Task Form to save data entered as a Task in the local database.
-- [ ] Add a Spinner to select a Team to assign/associate a Task to.
+- [X] Add a Spinner to select a Team to assign/associate a Task to.
 
 ### All Tasks
 
@@ -179,3 +183,5 @@ Link to [Espresso Tests Package](./app/src/androidTest/java/com/example/taskmast
 As a guide I referenced the Class Repository and this [Medium.com article](https://medium.com/@haxzie/using-intents-and-extras-to-pass-data-between-activities-android-beginners-guide-565239407ba0)
 
 Additional *thanks!* go to code samurai and troubleshooting master [Roger Reyes](https://github.com/RogerMReyes)
+
+More *thanks!* to [Raul Zarate](https://github.com/zaratr) for his input while debugging!
