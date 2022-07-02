@@ -21,6 +21,7 @@ import com.example.taskmaster.R;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 public class AddTask extends AppCompatActivity {
 
@@ -28,6 +29,7 @@ public class AddTask extends AppCompatActivity {
     List<Team> teams = null;
     Spinner teamNamesSpinner = null;
     CompletableFuture<List<Team>> teamsFuture = null;
+    ArrayList<String> teamNames = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +40,7 @@ public class AddTask extends AppCompatActivity {
 
         this.getTeamsFromDB();
         this.setUpTaskStatusSpinner();
-        this.setUpTeamNameSpinner();
+//        this.setUpTeamNameSpinner();
         this.setupAddThisButton();
     }
 
@@ -51,7 +53,11 @@ public class AddTask extends AppCompatActivity {
 
                     for (Team team: successResponse.getData()) {
                         teams.add(team);
+                        teamNames.add(team.getName());
                     }
+
+                    teamsFuture.complete(teams); // todo: verify this
+                    setUpTeamNameSpinner();
                 },
                 failureResponse -> {
                     Log.e(ACTIVITY_NAME, "Failed to query Teams in DB");
@@ -60,12 +66,17 @@ public class AddTask extends AppCompatActivity {
     }
 
     private void setUpTeamNameSpinner() {
-        Spinner teamNamesSpinner = findViewById(R.id.addTaskTeamsSpinner);
-        teamNamesSpinner.setAdapter(new ArrayAdapter<>(
-                this,
-                androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
-                teams
-        ));
+        teamNamesSpinner = findViewById(R.id.addTaskTeamsSpinner);
+
+        // add runOnUiThread to manage a/sync calls?
+        runOnUiThread(()-> {
+            teamNamesSpinner.setAdapter(new ArrayAdapter<>(
+                    this,
+                    androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
+                    teamNames
+            ));
+
+        });
     }
 
     private void setUpTaskStatusSpinner() {
@@ -84,6 +95,8 @@ public class AddTask extends AppCompatActivity {
 
         Button addThisTaskButton = AddTask.this.findViewById(R.id.addThisTaskButton);
         Spinner addTasksSpinner = AddTask.this.findViewById(R.id.addtaskTaskStatusSpinner);
+//        Spinner teamsSpinner = AddTask.this.findViewById(R.id.addTaskTeamsSpinner);
+
         EditText newTaskTitleEditText = findViewById(R.id.addTaskTaskTitleText);
         EditText newTaskDescriptionEditText = findViewById(R.id.addTaskTaskDescriptionText);
 
@@ -92,10 +105,22 @@ public class AddTask extends AppCompatActivity {
             String newTaskStatus = addTasksSpinner.getSelectedItem().toString();
             String newTaskTitle = newTaskTitleEditText.getText().toString();
 
+            try {
+                teams = teamsFuture.get();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            String selectedTeamName = teamNamesSpinner.getSelectedItem().toString();
+            Team selectedTeam = teams.stream().filter(team -> team.getName().equals(selectedTeamName)).findAny().orElseThrow(RuntimeException::new);
+
             Task task = Task.builder()
                     .title(newTaskTitle)
                     .body(newTaskDescription)
                     .state(newTaskStatus)
+                    .team(selectedTeam)
                     .build();
 
             Log.i("AddTaskActivity", "Created a new Task instance.");
