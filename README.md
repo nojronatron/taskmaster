@@ -26,7 +26,7 @@ Tuesday 28-June:
 
 - Completed Room DB integration.
 - Updated style and added a background.
-- Added 4 new Esspresso Tests.
+- Added 4 new Espresso Tests.
 - Added unittests.
 - Fixed back-button functionality.
 - Added ability to destroy certain Activities after work is completed using built-in 'finish()' method.
@@ -103,7 +103,7 @@ Stretch goals:
 
 - [X] Decide on a color scheme.
 - [X] Decide font families. For now will stick with the built-in Android font-families.
-- [ ] Allow the user to specify on their settings page how many tasks should be shown on the homepage. Use this to dynamically create buttons for as many tasks as the user requests.
+- [X] Allow the user to specify on their settings page how many tasks should be shown on the homepage. Use this to dynamically create buttons for as many tasks as the user requests.
 - [X] Also display the description of the task rather than Lorem Ipsum text.
 
 ## Screenshots

@@ -28,9 +28,14 @@ import java.util.List;
 public class HomeActivity extends AppCompatActivity {
 
     // declare public static final type fields to create keys to associate with preference editor store
-    public static final String SELECTED_TASK_DETAILS = null;
+    public static final String USER_NAME_KEY = "currentUsername";
     public static final String TITLE_TEXT_SUFFIX = "'s Task List";
     public static final String ACTIVITY_NAME = "HomeActivity";
+    public static final String SELECTED_TEAM_KEY = "selectedTeam";
+    public static final String SELECTED_TASK_DETAILS = "selectedTaskDetails";
+
+    String selectedTeamName = "";
+    String userNicknamePrefix = "";
 
     // reference to store DB contents
     List<Task> tasks = null;
@@ -47,23 +52,20 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        // initialize shared preferences
-        preferences = PreferenceManager.getDefaultSharedPreferences(this);
-
         // instantiate model instance lists so runtime wont throw
         tasks = new ArrayList<>();
         teams = new ArrayList<>();
 
-        // launch common methods to perform required tasks
-
-        // only call createTeams to seed Team Data for the first time.
+        // load seed data only if nothing exists in the database or for testing
 //        createTeams();
 
+        loadExistingPreferences();
         getTeamsFromDb();
         getTaskItemsFromDb();
+        // AllActivities Activity is deprecated
+//        setupLoadAllTasksActivityButton();
         setTitleText();
         setupAddTaskButton();
-//        setupLoadAllTasksActivityButton();
         setUpUserSettingsButton();
         setUpTasksRecyclerView();
     }
@@ -71,8 +73,17 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
+        loadExistingPreferences();
         setTitleText();
         getTaskItemsFromDb();
+    }
+
+    private void loadExistingPreferences() {
+        // initialize shared preferences
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        userNicknamePrefix = preferences.getString(HomeActivity.USER_NAME_KEY, "Current User");
+        selectedTeamName = preferences.getString(HomeActivity.SELECTED_TEAM_KEY, "");
     }
 
     private void createTeams() {
@@ -151,7 +162,17 @@ public class HomeActivity extends AppCompatActivity {
                     tasks.clear();
 
                     for (Task task : success.getData()) {
-                        tasks.add(task);
+                        // select items, filter by teamName if selectedTeamName is empty String
+                        if (task.getTeam() == null ||
+                                selectedTeamName.equals("")) {
+                            // give unassigned tasks to everyone
+                            tasks.add(task);
+                            continue;
+                        }
+                        // todo: debug throw happening in following IF statement
+                        if (task.getTeam().getName().equals(selectedTeamName)) {
+                            tasks.add(task);
+                        }
                     }
 
                     runOnUiThread(() -> adapter.notifyDataSetChanged());
@@ -163,7 +184,6 @@ public class HomeActivity extends AppCompatActivity {
 
     private void setTitleText() {
         // get users custom entered name but if not set use Current User as default
-        String userNicknamePrefix = preferences.getString(UserSettings.USER_NAME_KEY, "Current User");
         String userNickname = String.format("%1s%2s", userNicknamePrefix, TITLE_TEXT_SUFFIX);
 
         // set users custom name to the View
@@ -181,15 +201,15 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
-//    private void setupLoadAllTasksActivityButton() {
-//        // Set onclick button event handling to all tasks
-//        Button allTasksButton = HomeActivity.this.findViewById(R.id.homeAllTasksButton);
-//
-//        allTasksButton.setOnClickListener(view -> {
-//            Intent goToAllTasksActivity = new Intent(HomeActivity.this, AllTasks.class);
-//            startActivity(goToAllTasksActivity);
-//        });
-//    }
+    private void setupLoadAllTasksActivityButton() {
+        // Set onclick button event handling to all tasks
+        Button allTasksButton = HomeActivity.this.findViewById(R.id.homeAllTasksButton);
+
+        allTasksButton.setOnClickListener(view -> {
+            Intent goToAllTasksActivity = new Intent(HomeActivity.this, AllTasks.class);
+            startActivity(goToAllTasksActivity);
+        });
+    }
 
     private void setUpUserSettingsButton() {
         // Set onclick button event handling to UserSettings Activity
