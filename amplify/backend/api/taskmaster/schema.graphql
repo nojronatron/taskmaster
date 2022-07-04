@@ -7,4 +7,11 @@ type Task @model {
   title: String!
   body: String
   state: String
+  team: Team @belongsTo
+}
+
+type Team @model {
+  id: ID!
+  name: String!
+  task: [Task] @hasMany
 }

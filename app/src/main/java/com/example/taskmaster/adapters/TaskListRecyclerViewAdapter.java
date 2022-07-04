@@ -22,8 +22,8 @@ import java.util.List;
  * Adapter to manage RecyclerView.
  */
 public class TaskListRecyclerViewAdapter extends RecyclerView.Adapter<TaskListRecyclerViewAdapter.TaskListViewHolder> {
+    private static final String ACTIVITY_NAME = "TaskListRecyclerViewAdapter";
 
-    // data items stored in this field
     List<Task> tasks;
     Context callingActivity; // allows this class to accept context from the calling method
 

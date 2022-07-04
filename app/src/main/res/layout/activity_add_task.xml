@@ -8,7 +8,7 @@
     tools:context=".activites.AddTask">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/addTaskTitleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
@@ -24,12 +24,12 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="96dp"
+        android:layout_marginTop="44dp"
         android:text="Task Title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.128"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/addTaskTitleTextView" />
 
     <EditText
         android:id="@+id/addTaskTaskTitleText"
@@ -48,7 +48,7 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="28dp"
         android:text="Task Description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.146"
@@ -72,12 +72,11 @@
         android:id="@+id/addThisTaskButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="44dp"
         android:text="Submit"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.162"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addtaskTaskStatusSpinner" />
+        app:layout_constraintTop_toBottomOf="@+id/addTaskTeamsSpinner" />
 
     <TextView
         android:id="@+id/addtaskTotalTasksTextView"
@@ -96,26 +95,59 @@
         android:id="@+id/submittedText"
         android:layout_width="139dp"
         android:layout_height="43dp"
+        android:layout_marginStart="49dp"
+        android:layout_marginTop="49dp"
         android:text="Submitted!"
         android:textSize="20sp"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.418"
         app:layout_constraintStart_toEndOf="@+id/addThisTaskButton"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.835" />
+        app:layout_constraintTop_toBottomOf="@+id/addTaskTeamsSpinner" />
 
     <Spinner
         android:id="@+id/addtaskTaskStatusSpinner"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="57dp"
+        android:layout_marginTop="6dp"
         android:layout_marginEnd="16dp"
+        android:contentDescription="Select a task status"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.36"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addTaskTaskStatusTextView" />
+
+    <TextView
+        android:id="@+id/addTaskTaskStatusTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="46dp"
+        android:layout_marginTop="32dp"
+        android:text="Select a Status"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addTaskTaskDescriptionText" />
+
+    <Spinner
+        android:id="@+id/addTaskTeamsSpinner"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="16dp"
+        android:contentDescription="Select a team to assign this task to."
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.367"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addTaskTaskDescriptionText" />
+        app:layout_constraintTop_toBottomOf="@+id/addTaskTeamSelectTextView" />
+
+    <TextView
+        android:id="@+id/addTaskTeamSelectTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="44dp"
+        android:text="Assign Task To A Team"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addtaskTaskStatusSpinner" />
 </androidx.constraintlayout.widget.ConstraintLayout>

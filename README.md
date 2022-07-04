@@ -26,7 +26,7 @@ Tuesday 28-June:
 
 - Completed Room DB integration.
 - Updated style and added a background.
-- Added 4 new Esspresso Tests.
+- Added 4 new Espresso Tests.
 - Added unittests.
 - Fixed back-button functionality.
 - Added ability to destroy certain Activities after work is completed using built-in 'finish()' method.
@@ -41,6 +41,17 @@ Wednesday 29-June:
 - Encapsulated Activities with entry-point Class "TaskMasterApplication".
 - Espresso Tests were not changed, and still operate.
 - Added screenshots of progress to this readme.
+
+Thursday 30-June:
+
+- Added Team model and implemented Bi-directional 'has many' relationship.
+- Added 3 Teams (hard coded for now) via mutations.
+- Deleted the AllTasks Activity (was not longer in use).
+- Added Spinner to select a Team on the AddTask Activity (In progress).
+
+Saturday 2-July:
+
+- Debugged adding Team to a Task, now functional and DB-backed.
 
 ## Feature Tasks
 
@@ -70,6 +81,7 @@ Feature Tasks are broken down into the following sub sections.
 - [X] Must show a title and a body.
 - [X] When users click the “submit” button, show a “submitted!” label on the page.
 - [X] Modify Add Task Form to save data entered as a Task in the local database.
+- [X] Add a Spinner to select a Team to assign/associate a Task to.
 
 ### All Tasks
 
@@ -91,7 +103,7 @@ Stretch goals:
 
 - [X] Decide on a color scheme.
 - [X] Decide font families. For now will stick with the built-in Android font-families.
-- [ ] Allow the user to specify on their settings page how many tasks should be shown on the homepage. Use this to dynamically create buttons for as many tasks as the user requests.
+- [X] Allow the user to specify on their settings page how many tasks should be shown on the homepage. Use this to dynamically create buttons for as many tasks as the user requests.
 - [X] Also display the description of the task rather than Lorem Ipsum text.
 
 ## Screenshots
@@ -171,3 +183,5 @@ Link to [Espresso Tests Package](./app/src/androidTest/java/com/example/taskmast
 As a guide I referenced the Class Repository and this [Medium.com article](https://medium.com/@haxzie/using-intents-and-extras-to-pass-data-between-activities-android-beginners-guide-565239407ba0)
 
 Additional *thanks!* go to code samurai and troubleshooting master [Roger Reyes](https://github.com/RogerMReyes)
+
+More *thanks!* to [Raul Zarate](https://github.com/zaratr) for his input while debugging!
