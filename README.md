@@ -90,8 +90,8 @@ Feature Tasks are broken down into the following sub sections.
 - [ ] Add App short and full descriptions.
 - [ ] Create and upload: Feature Graphic (1024x500px, 1MB PNG|JPG).
 - [ ] Create and upload: At least 2 320px to 3840px PHONE screenshots.
-- [ ] Create and upload: At least one 7-inch Tablet screenshot 320px to 3840px.
-- [ ] Create and upload: At least one 10-inch Tablet screenshot 320 to 3840px.
+- [ ] ~~Create and upload: At least one 7-inch Tablet screenshot 320px to 3840px.~~
+- [ ] ~~Create and upload: At least one 10-inch Tablet screenshot 320 to 3840px.~~
 
 #### A Note About setContentView Method Errors on Rename
 
