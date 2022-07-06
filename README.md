@@ -77,7 +77,7 @@ Feature Tasks are broken down into the following sub sections.
 - [X] Added PRIVACYPOLICY.md file.
 - [X] Target Audience is 18+.
 - [X] Data Safety declares no data collection and no data shared with 3rd parties.
-- 
+- [X] Added custom icon file using Image Asset Studio.
 
 #### A Note About setContentView Method Errors on Rename
 
@@ -142,9 +142,37 @@ Stretch goals:
 
 ## Screenshots
 
-### Latest Updates
+### Preparing for Publication to Google Play Store
 
-AWS Amplify-connected Implementation:
+App Icon:
+
+![App Icon in Apps](./app/screenshots/TaskMaster_AppIcon_5July.png)
+
+Homescreen:
+
+![Home screen](./app/screenshots/TaskMaster_MainActivityWithTasks_5July.png)
+
+User Settings - Change Username:
+
+![User Settings - Change Username](./app/screenshots/TaskMaster_UserSettingsPreSubmit_5July.png)
+
+Homepage - With Custom Username:
+
+![Home screen with custom name](./app/screenshots/TaskMaster_MainActivityWithName_5July.png)
+
+Add Task:
+
+![Adding a Task, assigning to a Team](./app/screenshots/TaskMaster_AddTask_Spinner_CloudyWeds.png)
+
+Homepage - With New Task Displayed:
+
+![Home screen with new Task, Team](./app/screenshots/TaskMaster_MainActivityWithTasks_5July.png)
+
+Task Detail - Task Appears on-screen:
+
+![Task Detail screen with new Task](./app/screenshots/TaskMaster_TaskDetailScreen_5July.png)
+
+### AWS Amplify-connected Implementation
 
 Homepage:
 
