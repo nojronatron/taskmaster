@@ -1,5 +1,14 @@
 # Taskmaster
 
+Jon Rumsey's TaskMaster
+
+## Description
+
+An MVP Exploratory Task Management App for Android.
+
+Developed in Java using AndroidStudio, this app leverages AWS Amplify and GraphQL to store Task 
+and Team Name data. Locally stored data includes an un-authenticated username.
+
 ## Daily Change Log
 
 Weds and Thurs, June 23 and 24:
@@ -78,6 +87,11 @@ Feature Tasks are broken down into the following sub sections.
 - [X] Target Audience is 18+.
 - [X] Data Safety declares no data collection and no data shared with 3rd parties.
 - [X] Added custom icon file using Image Asset Studio.
+- [ ] Add App short and full descriptions.
+- [ ] Create and upload: Feature Graphic (1024x500px, 1MB PNG|JPG).
+- [ ] Create and upload: At least 2 320px to 3840px PHONE screenshots.
+- [ ] Create and upload: At least one 7-inch Tablet screenshot 320px to 3840px.
+- [ ] Create and upload: At least one 10-inch Tablet screenshot 320 to 3840px.
 
 #### A Note About setContentView Method Errors on Rename
 
