@@ -47,7 +47,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        this.testAuthSession();
+//        this.testAuthSession();
         this.fetchUserAttributes();
 
         tasks = new ArrayList<>();
@@ -74,14 +74,19 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     /**
-     * Method fetches user attributes
+     * Method fetches user attributes and if not authenticated moves user to LoginRegisterActivity.
+     * Otherwise no action is taken.
      */
     protected void fetchUserAttributes() {
+        // TODO: determine whether to refactor this code for case user IS logged in
         Amplify.Auth.fetchUserAttributes(
                 attributes -> Log.i(ACTIVITY_NAME, "User attributes: " + attributes.toString()),
                 error -> {
                     Log.e(ACTIVITY_NAME, "Failed to fetch user attributes (not logged in?)");
-
+                    runOnUiThread(() -> {
+                            Intent goToRegLoginActivity = new Intent(HomeActivity.this, LoginRegisterActivity.class);
+                            startActivity(goToRegLoginActivity);
+                    });
                 }
         );
     }
@@ -89,6 +94,7 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        this.fetchUserAttributes();
         loadExistingPreferences();
         setTitleText();
         getTaskItemsFromDb();

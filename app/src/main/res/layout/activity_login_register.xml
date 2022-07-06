@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/Azure"
     tools:context=".LoginRegisterActivity">
 
     <TextView
@@ -11,11 +12,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="160dp"
-        android:layout_marginTop="67dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="160dp"
         android:text="Welcome! Log In Here Or Register Below To Get Access."
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -24,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="132dp"
+        android:layout_marginTop="100dp"
         android:text="Email Address"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -43,9 +44,10 @@
         android:id="@+id/loginRegRegisterTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="28dp"
         android:text="New Users Register Below"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginRegLoginButton" />
 
@@ -54,7 +56,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="187dp"
+        android:layout_marginTop="164dp"
         android:text="Register Your Email"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginRegPasswdTextView" />
@@ -73,38 +75,28 @@
         android:id="@+id/loginRegLoginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="16dp"
         android:text="Log In"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginRegLoginPasswdPasswdView" />
+        app:layout_constraintTop_toBottomOf="@+id/loginRegLoginPasswdPasswd" />
 
     <Button
         android:id="@+id/loginRegRegisterButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="27dp"
-        android:text="Button"
+        android:layout_marginTop="12dp"
+        android:text="Register"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginRegPasswdPasswdView" />
-
-    <TextView
-        android:id="@+id/loginRegStatusTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="79dp"
-        android:layout_marginBottom="61dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginRegRegisterButton" />
+        app:layout_constraintTop_toBottomOf="@+id/loginRegPasswdRegistrationEntry" />
 
     <EditText
-        android:id="@+id/loginRegLoginEmailTextView"
+        android:id="@+id/loginRegUserLoginEmail"
         android:layout_width="258dp"
         android:layout_height="45dp"
         android:layout_marginStart="16dp"
@@ -117,7 +109,7 @@
         app:layout_constraintTop_toBottomOf="@+id/loginRegTitleTextView" />
 
     <EditText
-        android:id="@+id/loginRegLoginPasswdPasswdView"
+        android:id="@+id/loginRegLoginPasswdPasswd"
         android:layout_width="258dp"
         android:layout_height="42dp"
         android:layout_marginStart="16dp"
@@ -127,10 +119,10 @@
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/loginRegPasswdTextView"
-        app:layout_constraintTop_toBottomOf="@+id/loginRegLoginEmailTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/loginRegUserLoginEmail" />
 
     <EditText
-        android:id="@+id/loginRegEmailRegistrationTextView"
+        android:id="@+id/loginRegEmailRegistrationEntry"
         android:layout_width="254dp"
         android:layout_height="47dp"
         android:layout_marginStart="16dp"
@@ -143,7 +135,7 @@
         app:layout_constraintTop_toBottomOf="@+id/loginRegRegisterTextView" />
 
     <EditText
-        android:id="@+id/loginRegPasswdPasswdView"
+        android:id="@+id/loginRegPasswdRegistrationEntry"
         android:layout_width="249dp"
         android:layout_height="46dp"
         android:layout_marginStart="16dp"
@@ -153,5 +145,37 @@
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/loginRegPasswdEntryTextView"
-        app:layout_constraintTop_toBottomOf="@+id/loginRegEmailRegistrationTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/loginRegEmailRegistrationEntry" />
+
+    <TextView
+        android:id="@+id/loginRegVerifyCodeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="54dp"
+        android:text="Enter Verification Code:"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginRegRegisterButton" />
+
+    <EditText
+        android:id="@+id/loginRegVerifyCodeUserInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:ems="10"
+        android:inputType="numberPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginRegVerifyCodeLabel" />
+
+    <Button
+        android:id="@+id/loginRegVerifyCodeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:text="Verify"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginRegVerifyCodeUserInput" />
 </androidx.constraintlayout.widget.ConstraintLayout>
