@@ -72,9 +72,12 @@ Feature Tasks are broken down into the following sub sections.
 - [X] Configured app as "Free", which cannot be changed to "Paid".
 - [X] There is no restricted content, Malware, Intellectual Property, or MUS in this app.
 - [X] Early Internal Testing was NOT configured.
-- [X] Users must be aged 18 or older.
-- [X] The app collects a sample name but has no registration requirement.
-- [X] 
+- [X] GooglePlay suggested Content Rating of E-Everyone (US) or 3+ (IARC Generic, most other parts of the world).
+- [X] The app collects a sample name but has no registration or PII submission requirements.
+- [X] Added PRIVACYPOLICY.md file.
+- [X] Target Audience is 18+.
+- [X] Data Safety declares no data collection and no data shared with 3rd parties.
+- 
 
 #### A Note About setContentView Method Errors on Rename
 
