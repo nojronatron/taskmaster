@@ -1,5 +1,14 @@
 # Taskmaster
 
+Jon Rumsey's TaskMaster
+
+## Description
+
+An MVP Exploratory Task Management App for Android.
+
+Developed in Java using AndroidStudio, this app leverages AWS Amplify and GraphQL to store Task 
+and Team Name data. Locally stored data includes an un-authenticated username.
+
 ## Daily Change Log
 
 Weds and Thurs, June 23 and 24:
@@ -53,9 +62,48 @@ Saturday 2-July:
 
 - Debugged adding Team to a Task, now functional and DB-backed.
 
+Tuesday 5-July:
+
+- Debugged app, updated comments to comment strings, removed some dead code, validated functionality.
+- Working through publication steps...
+
 ## Feature Tasks
 
 Feature Tasks are broken down into the following sub sections.
+
+### Publishing App to GoogleStore
+
+- [X] Get GoogleDev account.
+- [X] Update app-level build.gradle with new package-ID (in this case 'example' to 'jrmz').
+- [X] Update 'package=' value in AndroidManifest.xml.
+- [X] Update package imports and debug code until package references to your new package name are resolved (see next subsection).
+- [X] Name the app "Jon Rumsey's TaskMaster" 
+- [X] Configured app as "Free", which cannot be changed to "Paid".
+- [X] There is no restricted content, Malware, Intellectual Property, or MUS in this app.
+- [X] Early Internal Testing was NOT configured.
+- [X] GooglePlay suggested Content Rating of E-Everyone (US) or 3+ (IARC Generic, most other parts of the world).
+- [X] The app collects a sample name but has no registration or PII submission requirements.
+- [X] Added PRIVACYPOLICY.md file.
+- [X] Target Audience is 18+.
+- [X] Data Safety declares no data collection and no data shared with 3rd parties.
+- [X] Added custom icon file using Image Asset Studio.
+- [ ] Add App short and full descriptions.
+- [ ] Create and upload: Feature Graphic (1024x500px, 1MB PNG|JPG).
+- [ ] Create and upload: At least 2 320px to 3840px PHONE screenshots.
+- [ ] Create and upload: At least one 7-inch Tablet screenshot 320px to 3840px.
+- [ ] Create and upload: At least one 10-inch Tablet screenshot 320 to 3840px.
+
+#### A Note About setContentView Method Errors on Rename
+
+Highlight 'R', select 'More Action...', select 'Import Class (com.your_name_space.your_project_name)'.
+
+If 'your_name_space' and/or 'your_project_name' do not appear as importable package statements, 
+then you'll need to resolve errors in 'setContentView()' method calls:
+
+1. Sync project with Gradle files and check for errors (recurring task). 
+2. Build the project again and look for more 'setContentView()' errors and any others (recurring task).
+3. Reload AndroidStudio.
+4. Repeat all above steps.
 
 ### Homepage
 
@@ -108,9 +156,37 @@ Stretch goals:
 
 ## Screenshots
 
-### Latest Updates
+### Preparing for Publication to Google Play Store
 
-AWS Amplify-connected Implementation:
+App Icon:
+
+![App Icon in Apps](./app/screenshots/TaskMaster_AppIcon_5July.png)
+
+Homescreen:
+
+![Home screen](./app/screenshots/TaskMaster_MainActivityWithTasks_5July.png)
+
+User Settings - Change Username:
+
+![User Settings - Change Username](./app/screenshots/TaskMaster_UserSettingsPreSubmit_5July.png)
+
+Homepage - With Custom Username:
+
+![Home screen with custom name](./app/screenshots/TaskMaster_MainActivityWithName_5July.png)
+
+Add Task:
+
+![Adding a Task, assigning to a Team](./app/screenshots/TaskMaster_AddTask_Spinner_CloudyWeds.png)
+
+Homepage - With New Task Displayed:
+
+![Home screen with new Task, Team](./app/screenshots/TaskMaster_MainActivityWithTasks_5July.png)
+
+Task Detail - Task Appears on-screen:
+
+![Task Detail screen with new Task](./app/screenshots/TaskMaster_TaskDetailScreen_5July.png)
+
+### AWS Amplify-connected Implementation
 
 Homepage:
 

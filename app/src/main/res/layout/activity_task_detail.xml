@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/Azure"
-    tools:context=".activites.TaskDetailActivity">
+    tools:context="com.jrmz.taskmaster.activites.TaskDetailActivity">
 
     <TextView
         android:id="@+id/taskDetailDescriptionText"
