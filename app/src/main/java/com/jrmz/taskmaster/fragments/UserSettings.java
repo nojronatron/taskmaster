@@ -1,4 +1,4 @@
-package com.example.taskmaster.fragments;
+package com.jrmz.taskmaster.fragments;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,7 +16,7 @@ import android.widget.Toast;
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Team;
-import com.example.taskmaster.R;
+import com.jrmz.taskmaster.R;
 
 import java.util.ArrayList;
 import java.util.List;

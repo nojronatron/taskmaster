@@ -1,4 +1,4 @@
-package com.example.taskmaster.adapters;
+package com.jrmz.taskmaster.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,11 +11,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.amplifyframework.datastore.generated.model.Task;
-import com.example.taskmaster.HomeActivity;
-import com.example.taskmaster.R;
-import com.example.taskmaster.activites.TaskDetailActivity;
+import com.jrmz.taskmaster.HomeActivity;
+import com.jrmz.taskmaster.R;
+import com.jrmz.taskmaster.activites.TaskDetailActivity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

@@ -1,4 +1,4 @@
-package com.example.taskmaster.fragments;
+package com.jrmz.taskmaster.fragments;
 
 import android.os.Bundle;
 
@@ -8,7 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.taskmaster.R;
+import com.jrmz.taskmaster.R;
+
 
 /**
  * A simple {@link Fragment} subclass.

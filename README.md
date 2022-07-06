@@ -64,8 +64,29 @@ Feature Tasks are broken down into the following sub sections.
 
 ### Publishing App to GoogleStore
 
-- [ ] Get GoogleDev account.
-- [ ] 
+- [X] Get GoogleDev account.
+- [X] Update app-level build.gradle with new package-ID (in this case 'example' to 'jrmz').
+- [X] Update 'package=' value in AndroidManifest.xml.
+- [X] Update package imports and debug code until package references to your new package name are resolved (see next subsection).
+- [X] Name the app "Jon Rumsey's TaskMaster" 
+- [X] Configured app as "Free", which cannot be changed to "Paid".
+- [X] There is no restricted content, Malware, Intellectual Property, or MUS in this app.
+- [X] Early Internal Testing was NOT configured.
+- [X] Users must be aged 18 or older.
+- [X] The app collects a sample name but has no registration requirement.
+- [X] 
+
+#### A Note About setContentView Method Errors on Rename
+
+Highlight 'R', select 'More Action...', select 'Import Class (com.your_name_space.your_project_name)'.
+
+If 'your_name_space' and/or 'your_project_name' do not appear as importable package statements, 
+then you'll need to resolve errors in 'setContentView()' method calls:
+
+1. Sync project with Gradle files and check for errors (recurring task). 
+2. Build the project again and look for more 'setContentView()' errors and any others (recurring task).
+3. Reload AndroidStudio.
+4. Repeat all above steps.
 
 ### Homepage
 

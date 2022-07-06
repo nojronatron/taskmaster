@@ -1,4 +1,4 @@
-package com.example.taskmaster;
+package com.jrmz.taskmaster;
 
 
 import static androidx.test.espresso.Espresso.onData;
@@ -22,12 +22,16 @@ import android.view.ViewParent;
 
 import androidx.test.espresso.DataInteraction;
 import androidx.test.espresso.ViewInteraction;
+import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 
+import com.example.taskmaster.R;
+
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
+import org.hamcrest.Matchers;
 import org.hamcrest.TypeSafeMatcher;
 import org.junit.Rule;
 import org.junit.Test;
@@ -44,7 +48,7 @@ public class AddNameAndActivitesWithSelectedStatus {
     @Test
     public void addNameAndActivitesWithSelectedStatus() {
         ViewInteraction materialButton = onView(
-                allOf(withId(R.id.homeUserSettingsButton), withText("User Settings"),
+                Matchers.allOf(ViewMatchers.withId(R.id.homeUserSettingsButton), withText("User Settings"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),

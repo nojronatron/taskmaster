@@ -1,14 +1,12 @@
-package com.example.taskmaster;
+package com.jrmz.taskmaster;
 
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-import com.example.taskmaster.database.TaskMasterConverters;
-import com.example.taskmaster.models.TaskModel;
+import com.jrmz.taskmaster.database.TaskMasterConverters;
+import com.jrmz.taskmaster.models.TaskModel;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**

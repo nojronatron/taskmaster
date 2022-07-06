@@ -1,4 +1,4 @@
-package com.example.taskmaster.activites;
+package com.jrmz.taskmaster.activites;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,8 +7,8 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.taskmaster.HomeActivity;
-import com.example.taskmaster.R;
+import com.jrmz.taskmaster.HomeActivity;
+import com.jrmz.taskmaster.R;
 
 public class TaskDetailActivity extends AppCompatActivity {
 

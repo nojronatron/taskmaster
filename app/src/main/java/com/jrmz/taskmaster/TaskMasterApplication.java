@@ -1,4 +1,4 @@
-package com.example.taskmaster;
+package com.jrmz.taskmaster;
 
 import android.app.Application;
 import android.util.Log;

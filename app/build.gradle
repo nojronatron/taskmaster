@@ -6,7 +6,7 @@ android {
     compileSdk 32
 
     defaultConfig {
-        applicationId "com.example.taskmaster"
+        applicationId "com.jrmz.taskmaster"
         minSdk 24
         targetSdk 32
         versionCode 1

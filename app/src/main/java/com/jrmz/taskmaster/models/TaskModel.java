@@ -1,4 +1,4 @@
-package com.example.taskmaster.models;
+package com.jrmz.taskmaster.models;
 
 import androidx.annotation.NonNull;
 

@@ -1,4 +1,4 @@
-package com.example.taskmaster;
+package com.jrmz.taskmaster;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -17,9 +17,9 @@ import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Task;
 import com.amplifyframework.datastore.generated.model.Team;
-import com.example.taskmaster.activites.AddTask;
-import com.example.taskmaster.adapters.TaskListRecyclerViewAdapter;
-import com.example.taskmaster.fragments.UserSettings;
+import com.jrmz.taskmaster.activites.AddTask;
+import com.jrmz.taskmaster.adapters.TaskListRecyclerViewAdapter;
+import com.jrmz.taskmaster.fragments.UserSettings;
 
 import java.util.ArrayList;
 import java.util.List;
