@@ -53,9 +53,19 @@ Saturday 2-July:
 
 - Debugged adding Team to a Task, now functional and DB-backed.
 
+Tuesday 5-July:
+
+- Debugged app, updated comments to comment strings, removed some dead code, validated functionality.
+- Working through publication steps...
+
 ## Feature Tasks
 
 Feature Tasks are broken down into the following sub sections.
+
+### Publishing App to GoogleStore
+
+- [ ] Get GoogleDev account.
+- [ ] 
 
 ### Homepage
 
