@@ -41,21 +41,12 @@ public class UserSettings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_settings);
 
-        Log.i(ACTIVITY_NAME, "Entered onCreate method.");
-
-        // create shared prefs instance
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
-
-        // use prefs to get existing entries or get empty string if none found
         this.currentUsername = preferences.getString(USER_NAME_KEY, "");
-
         Log.i(ACTIVITY_NAME, "Test for currentUsername value.");
 
-        // deal with empty or full currentUsername
         if (!currentUsername.isEmpty()) {
             Log.i(ACTIVITY_NAME, "currentUsername is NOT empty.");
-
-            // get reference to username edittext element
             EditText usernameText = findViewById(R.id.settingsEditTextPersonName);
             usernameText.setText(currentUsername);
         }
@@ -65,37 +56,26 @@ public class UserSettings extends AppCompatActivity {
         this.teamsFuture = new CompletableFuture<>();
         this.getTeamsFromDB();
 
-        // get reference to the submit button
         Button settingsSubmitButton = findViewById(R.id.settingsSubmitButton);
-
-        // get reference to the teams list spinner
         teamNamesSpinner = findViewById(R.id.userConfigSelectTeamSpinner);
-
         Log.i(ACTIVITY_NAME, "Set onclick listener for settingsSubmitButton.");
 
-        // set up event listener to store user-defined entry into Shared Prefs
+        /**
+         * set up event listener to store user-defined entry into Shared Prefs
+         */
         settingsSubmitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // set up the editor
                 SharedPreferences.Editor preferenceEditor = preferences.edit();
-
-                // get the text from the edittext element
                 EditText usernameText = findViewById(R.id.settingsEditTextPersonName);
                 String currentUsername = usernameText.getText().toString();
-
-                // store string in Shared Prefs AND APPLY CHANGES
                 preferenceEditor.putString(USER_NAME_KEY, currentUsername);
-
-                // take currently selected team name and stuff into SharedPrefs
                 selectedTeamName = teamNamesSpinner.getSelectedItem().toString();
                 preferenceEditor.putString(SELECTED_TEAM_KEY, selectedTeamName);
 
                 String logMessage = String.format(
                         "Wrote %1s to SELECTED_TEAM_KEY sharedPrefs.", selectedTeamName);
                 Log.i(ACTIVITY_NAME, logMessage);
-
-                // save preferences
                 preferenceEditor.apply();
 
                 Toast.makeText(
@@ -107,6 +87,9 @@ public class UserSettings extends AppCompatActivity {
         });
     }
 
+    /**
+     * Setup and query the Amplify DB for existing Team entries.
+     */
     private void getTeamsFromDB() {
         Log.i(ACTIVITY_NAME, "Entered getTeamsFromDB()");
 
@@ -129,12 +112,13 @@ public class UserSettings extends AppCompatActivity {
         );
     }
 
+    /**
+     * Setup and load the Team Name Spinner with Amplify DB Team Names.
+     */
     private void setUpTeamNameSpinner() {
         Log.i(ACTIVITY_NAME, "Entered setUpTeamNameSpinner.");
-
         teamNamesSpinner = findViewById(R.id.userConfigSelectTeamSpinner);
 
-        // use runOnUiThread to manage a/sync calls
         runOnUiThread(()-> {
             teamNamesSpinner.setAdapter(new ArrayAdapter<>(
                     this,

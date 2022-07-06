@@ -25,8 +25,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
-
-    // declare public static final type fields to create keys to associate with preference editor store
     public static final String USER_NAME_KEY = "currentUsername";
     public static final String TITLE_TEXT_SUFFIX = "'s Task List";
     public static final String ACTIVITY_NAME = "HomeActivity";
@@ -35,34 +33,21 @@ public class HomeActivity extends AppCompatActivity {
 
     String selectedTeamName = "";
     String userNicknamePrefix = "";
-
-    // reference to store DB contents
+    SharedPreferences preferences;
+    TaskListRecyclerViewAdapter adapter;
     List<Task> tasks = null;
     List<Team> teams = null;
-
-    // declare shared preferences for storing data
-    SharedPreferences preferences;
-
-    // RecyclerView adapter reference
-    TaskListRecyclerViewAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        // instantiate model instance lists so runtime wont throw
         tasks = new ArrayList<>();
         teams = new ArrayList<>();
-
-        // load seed data only if nothing exists in the database or for testing
-//        createTeams();
-
         loadExistingPreferences();
         getTeamsFromDb();
         getTaskItemsFromDb();
-        // AllActivities Activity is deprecated
-//        setupLoadAllTasksActivityButton();
         setTitleText();
         setupAddTaskButton();
         setUpUserSettingsButton();
@@ -72,12 +57,14 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
         loadExistingPreferences();
         setTitleText();
         getTaskItemsFromDb();
     }
 
+    /**
+     * Loads and initializes existing current user name and selected Team.
+     */
     private void loadExistingPreferences() {
         // initialize shared preferences
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -85,6 +72,9 @@ public class HomeActivity extends AppCompatActivity {
         selectedTeamName = preferences.getString(HomeActivity.SELECTED_TEAM_KEY, "");
     }
 
+    /**
+     * Loads a default set of Teams into the database.
+     */
     private void createTeams() {
         teams.clear();
 
@@ -138,6 +128,9 @@ public class HomeActivity extends AppCompatActivity {
         );
     }
 
+    /**
+     * Sets up and executes Amplify Query for the list of existing Teams.
+     */
     private void getTeamsFromDb() {
         Amplify.API.query(
                 ModelQuery.list(Team.class),
@@ -151,6 +144,10 @@ public class HomeActivity extends AppCompatActivity {
         );
     }
 
+    /**
+     * Sets up and executes Amplify Query for the list of existing Tasks.
+     * Filters Tasks by Team Name unless no Team Name is stored from user selection.
+     */
     private void getTaskItemsFromDb() {
         Amplify.API.query(
                 ModelQuery.list(Task.class),
@@ -159,10 +156,8 @@ public class HomeActivity extends AppCompatActivity {
                     tasks.clear();
 
                     for (Task task : success.getData()) {
-                        // select items, filter by teamName if selectedTeamName is empty String
                         if (task.getTeam() == null ||
                                 selectedTeamName.equals("")) {
-                            // give unassigned tasks to everyone
                             tasks.add(task);
                             continue;
                         }
@@ -180,17 +175,19 @@ public class HomeActivity extends AppCompatActivity {
         );
     }
 
+    /**
+     * Get user-supplied name and set to the View. Default is Current User.
+     */
     private void setTitleText() {
-        // get users custom entered name but if not set use Current User as default
         String userNickname = String.format("%1s%2s", userNicknamePrefix, TITLE_TEXT_SUFFIX);
-
-        // set users custom name to the View
         TextView userCustomNameText = findViewById(R.id.homeTasksListTitleTextVIew);
         userCustomNameText.setText(userNickname);
     }
 
+    /**
+     * Set onclick button event handling to add a new Task.
+     */
     private void setupAddTaskButton() {
-        // Set onclick button event handling to add a task
         Button addTaskButton = HomeActivity.this.findViewById(R.id.homeAddTaskButton);
 
         addTaskButton.setOnClickListener(view -> {
@@ -209,8 +206,10 @@ public class HomeActivity extends AppCompatActivity {
 //        });
 //    }
 
+    /**
+     * Set onClick button event handling to load UserSettings Activity.
+     */
     private void setUpUserSettingsButton() {
-        // Set onclick button event handling to UserSettings Activity
         Button userSettingsButton = HomeActivity.this.findViewById(R.id.homeUserSettingsButton);
 
         userSettingsButton.setOnClickListener(view -> {
@@ -230,9 +229,6 @@ public class HomeActivity extends AppCompatActivity {
         RecyclerView tasksRecyclerView = findViewById(R.id.homeTaskListRecyclerView);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         tasksRecyclerView.setLayoutManager(layoutManager);
-
-        // create and attach the recyclerview adapter and set the adapter recyclerview
-        // Note: Had to cast tasks to ArrayList<T> from List<T> for adapter to accept the return
         adapter = new TaskListRecyclerViewAdapter(tasks, this);
         tasksRecyclerView.setAdapter(adapter);
     }

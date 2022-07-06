@@ -24,9 +24,14 @@ import java.util.List;
 public class TaskListRecyclerViewAdapter extends RecyclerView.Adapter<TaskListRecyclerViewAdapter.TaskListViewHolder> {
     private static final String ACTIVITY_NAME = "TaskListRecyclerViewAdapter";
 
+    Context callingActivity;
     List<Task> tasks;
-    Context callingActivity; // allows this class to accept context from the calling method
 
+    /**
+     * Initialize the RecyclerView Adapter.
+     * @param tasks
+     * @param callingActivity
+     */
     public TaskListRecyclerViewAdapter(List<Task> tasks, Context callingActivity) {
         this.tasks = tasks;
         this.callingActivity = callingActivity;
@@ -43,8 +48,6 @@ public class TaskListRecyclerViewAdapter extends RecyclerView.Adapter<TaskListRe
     public void onBindViewHolder(@NonNull TaskListRecyclerViewAdapter.TaskListViewHolder holder, int position) {
         TextView taskFragmentTextView = holder.itemView.findViewById(R.id.fragTaskListFragment);
         Task selectedTask = tasks.get(position);
-
-        // humans don't number their task lists starting with zero
         int itemNumber = position + 1;
 
         // format data for sending as an Intent Extra
@@ -66,7 +69,6 @@ public class TaskListRecyclerViewAdapter extends RecyclerView.Adapter<TaskListRe
                 selectedTask.getTeam().getName()
         ));
 
-        // make an OnClick handler to interact with RecyclerView items
         View taskViewHolder = holder.itemView;
         taskViewHolder.setOnClickListener(view -> {
             Intent goToTaskDetailView = new Intent(callingActivity, TaskDetailActivity.class);
@@ -78,7 +80,6 @@ public class TaskListRecyclerViewAdapter extends RecyclerView.Adapter<TaskListRe
     @Override
     public int getItemCount() {
         return tasks.size();
-//        return 0;
     }
 
     /**

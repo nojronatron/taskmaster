@@ -37,13 +37,14 @@ public class AddTask extends AppCompatActivity {
 
         setContentView(R.layout.activity_add_task);
         teamsFuture = new CompletableFuture<>();
-
         this.getTeamsFromDB();
         this.setUpTaskStatusSpinner();
-//        this.setUpTeamNameSpinner();
         this.setupAddThisButton();
     }
 
+    /**
+     * Setup up Amplify Query to get list of existing Teams from the database.
+     */
     private void getTeamsFromDB() {
         Amplify.API.query(
                 ModelQuery.list(Team.class),
@@ -65,38 +66,40 @@ public class AddTask extends AppCompatActivity {
         );
     }
 
+    /**
+     * Initialize and configure the Team names Spinner.
+     */
     private void setUpTeamNameSpinner() {
         teamNamesSpinner = findViewById(R.id.addTaskTeamsSpinner);
 
-        // add runOnUiThread to manage a/sync calls?
         runOnUiThread(()-> {
             teamNamesSpinner.setAdapter(new ArrayAdapter<>(
                     this,
                     androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
                     teamNames
             ));
-
         });
     }
 
+    /**
+     * Initialize and configure the Spinner than holds the task Status value.
+     */
     private void setUpTaskStatusSpinner() {
         Spinner taskStatusSpinner = findViewById(R.id.addtaskTaskStatusSpinner);
         taskStatusSpinner.setAdapter(new ArrayAdapter<>(
                 this,
                 androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
-//                Task.StateCategoryEnum.values()
                 new String[] {"New", "Assigned", "In Progress", "Closed"}
         ));
     }
 
-    private void setupAddThisButton() {//TaskMasterDatabase db) {
-        // Add event driven textbox change on button press
-        Log.i("AddTaskActivity", "Entered setupAddThisButton method.");
-
+    /**
+     * Setup the Add button and register onClick listener to gather user supplied inputs and store
+     * them as an entity into the Amplify DB.
+     */
+    private void setupAddThisButton() {
         Button addThisTaskButton = AddTask.this.findViewById(R.id.addThisTaskButton);
         Spinner addTasksSpinner = AddTask.this.findViewById(R.id.addtaskTaskStatusSpinner);
-//        Spinner teamsSpinner = AddTask.this.findViewById(R.id.addTaskTeamsSpinner);
-
         EditText newTaskTitleEditText = findViewById(R.id.addTaskTaskTitleText);
         EditText newTaskDescriptionEditText = findViewById(R.id.addTaskTaskDescriptionText);
 
@@ -107,10 +110,10 @@ public class AddTask extends AppCompatActivity {
 
             try {
                 teams = teamsFuture.get();
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            } catch (ExecutionException ee) {
+                ee.printStackTrace();
+            } catch (InterruptedException ie) {
+                ie.printStackTrace();
             }
 
             String selectedTeamName = teamNamesSpinner.getSelectedItem().toString();
