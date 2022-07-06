@@ -69,7 +69,7 @@ public class HomeActivityTestAllTasksDisplays {
         }
 
         ViewInteraction textView = onView(
-                allOf(withId(R.id.textView7), withText("All Tasks"),
+                allOf(withId(R.id.loginRegEmailRegisterTextView), withText("All Tasks"),
                         withParent(withParent(withId(android.R.id.content))),
                         isDisplayed()));
         textView.check(matches(withText("All Tasks")));

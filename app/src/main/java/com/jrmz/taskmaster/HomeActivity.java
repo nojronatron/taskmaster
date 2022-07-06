@@ -14,9 +14,13 @@ import android.widget.TextView;
 
 import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
+import com.amplifyframework.auth.AuthChannelEventName;
 import com.amplifyframework.core.Amplify;
+import com.amplifyframework.core.InitializationStatus;
 import com.amplifyframework.datastore.generated.model.Task;
 import com.amplifyframework.datastore.generated.model.Team;
+import com.amplifyframework.hub.HubChannel;
+import com.amplifyframework.hub.SubscriptionToken;
 import com.jrmz.taskmaster.activites.AddTask;
 import com.jrmz.taskmaster.adapters.TaskListRecyclerViewAdapter;
 import com.jrmz.taskmaster.fragments.UserSettings;
@@ -43,6 +47,9 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        this.testAuthSession();
+        this.fetchUserAttributes();
+
         tasks = new ArrayList<>();
         teams = new ArrayList<>();
         loadExistingPreferences();
@@ -52,6 +59,31 @@ public class HomeActivity extends AppCompatActivity {
         setupAddTaskButton();
         setUpUserSettingsButton();
         setUpTasksRecyclerView();
+    }
+
+    /**
+     * Method to verify Amplify Cognito is initialized and an Auth Session can be referenced.
+     */
+    protected void testAuthSession(){
+        Amplify.Auth.fetchAuthSession(
+                result -> {
+                    Log.i(ACTIVITY_NAME, result.toString());
+                },
+                error -> Log.e(ACTIVITY_NAME, error.toString())
+        );
+    }
+
+    /**
+     * Method fetches user attributes
+     */
+    protected void fetchUserAttributes() {
+        Amplify.Auth.fetchUserAttributes(
+                attributes -> Log.i(ACTIVITY_NAME, "User attributes: " + attributes.toString()),
+                error -> {
+                    Log.e(ACTIVITY_NAME, "Failed to fetch user attributes (not logged in?)");
+
+                }
+        );
     }
 
     @Override

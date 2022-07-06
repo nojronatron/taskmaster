@@ -4,7 +4,7 @@
     package="com.jrmz.taskmaster">
 
     <application
-        android:name="com.jrmz.taskmaster.TaskMasterApplication"
+        android:name=".TaskMasterApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -15,16 +15,19 @@
         android:theme="@style/Theme.Taskmaster"
         tools:targetApi="31">
         <activity
-            android:name="com.jrmz.taskmaster.activites.TaskDetailActivity"
+            android:name=".LoginRegisterActivity"
             android:exported="false" />
         <activity
-            android:name="com.jrmz.taskmaster.fragments.UserSettings"
+            android:name=".activites.TaskDetailActivity"
             android:exported="false" />
         <activity
-            android:name="com.jrmz.taskmaster.activites.AddTask"
+            android:name=".fragments.UserSettings"
             android:exported="false" />
         <activity
-            android:name="com.jrmz.taskmaster.HomeActivity"
+            android:name=".activites.AddTask"
+            android:exported="false" />
+        <activity
+            android:name=".HomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
