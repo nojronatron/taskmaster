@@ -21,9 +21,6 @@
             android:name=".fragments.UserSettings"
             android:exported="false" />
         <activity
-            android:name=".activites.AllTasks"
-            android:exported="false" />
-        <activity
             android:name=".activites.AddTask"
             android:exported="false" />
         <activity

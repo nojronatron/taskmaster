@@ -49,19 +49,21 @@ public class TaskListRecyclerViewAdapter extends RecyclerView.Adapter<TaskListRe
 
         // format data for sending as an Intent Extra
         String taskFullDetailsOutput = String.format(
-                "%1$s [%2$s]\n%3$s",
+                "%1$s [%2$s]\nTeam %3$s\n%4$s",
                 selectedTask.getTitle(),
                 selectedTask.getState(),
+                selectedTask.getTeam().getName(),
                 selectedTask.getBody()
         );
 
         // sets formatted data to TextView for display
         taskFragmentTextView.setText(String.format(
-                "%1$s:\n %2$s [%3$s]: \n%4$s",
+                "%1$s:\n %2$s [%3$s] in team %5$s: \n%4$s",
                 itemNumber,
                 selectedTask.getTitle(),
                 selectedTask.getState(),
-                selectedTask.getBody()
+                selectedTask.getBody(),
+                selectedTask.getTeam().getName()
         ));
 
         // make an OnClick handler to interact with RecyclerView items

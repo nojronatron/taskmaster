@@ -18,7 +18,6 @@ import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Task;
 import com.amplifyframework.datastore.generated.model.Team;
 import com.example.taskmaster.activites.AddTask;
-import com.example.taskmaster.activites.AllTasks;
 import com.example.taskmaster.adapters.TaskListRecyclerViewAdapter;
 import com.example.taskmaster.fragments.UserSettings;
 
@@ -112,7 +111,7 @@ public class HomeActivity extends AppCompatActivity {
                             teamAlphaName + ". getName() returned: " + teamAlpha.getName());
                     teams.add(teamAlpha);
                 },
-                failureResponse -> Log.i(ACTIVITY_NAME, "Failed creating instance " +
+                failureResponse -> Log.e(ACTIVITY_NAME, "Failed creating instance " +
                         teamAlphaName)
         );
 
@@ -148,9 +147,7 @@ public class HomeActivity extends AppCompatActivity {
                         teams.add(team);
                     }
                 },
-                failureResponse -> {
-                    Log.e(ACTIVITY_NAME, "Failed to query Teams in DB");
-                }
+                failureResponse -> Log.e(ACTIVITY_NAME, "Failed to query Teams in DB")
         );
     }
 
@@ -175,10 +172,11 @@ public class HomeActivity extends AppCompatActivity {
                         }
                     }
 
+                    int tasksCount = tasks.size();
                     runOnUiThread(() -> adapter.notifyDataSetChanged());
                 },
 
-                failure -> Log.i(ACTIVITY_NAME, "Read from GraphQL failed.")
+                failure -> Log.e(ACTIVITY_NAME, "Read from GraphQL failed.")
         );
     }
 
@@ -201,15 +199,15 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
-    private void setupLoadAllTasksActivityButton() {
-        // Set onclick button event handling to all tasks
-        Button allTasksButton = HomeActivity.this.findViewById(R.id.homeAllTasksButton);
-
-        allTasksButton.setOnClickListener(view -> {
-            Intent goToAllTasksActivity = new Intent(HomeActivity.this, AllTasks.class);
-            startActivity(goToAllTasksActivity);
-        });
-    }
+//    private void setupLoadAllTasksActivityButton() {
+//        // Set onclick button event handling to all tasks
+//        Button allTasksButton = HomeActivity.this.findViewById(R.id.homeAllTasksButton);
+//
+//        allTasksButton.setOnClickListener(view -> {
+//            Intent goToAllTasksActivity = new Intent(HomeActivity.this, AllTasks.class);
+//            startActivity(goToAllTasksActivity);
+//        });
+//    }
 
     private void setUpUserSettingsButton() {
         // Set onclick button event handling to UserSettings Activity

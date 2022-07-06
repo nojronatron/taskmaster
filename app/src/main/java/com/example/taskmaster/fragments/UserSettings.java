@@ -125,9 +125,7 @@ public class UserSettings extends AppCompatActivity {
                     Log.i(ACTIVITY_NAME, "Calling setUpTeamNameSpinner()");
                     setUpTeamNameSpinner();
                 },
-                failureResponse -> {
-                    Log.e(ACTIVITY_NAME, "Failed to query Teams in DB");
-                }
+                failureResponse -> Log.e(ACTIVITY_NAME, "Failed to query Teams in DB")
         );
     }
 
