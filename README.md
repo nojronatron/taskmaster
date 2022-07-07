@@ -80,12 +80,12 @@ Feature Tasks are broken down into the following sub sections.
 
 ### Integrate Login Functionality with Cognito
 
-- [ ] Create a Register and Login Activity.
-- [ ] Enable Authentication through Amplify.AUTH and Cognito.
-- [ ] Capture user email address and a password in order to register.
-- [ ] Enable Email verification / Registration functionality for new user.
-- [ ] Enable registered user logon.
-- [ ] Maintain authenticated user session through all Activities.
+- [X] Create a Register and Login Activity.
+- [X] Enable Authentication through Amplify.AUTH and Cognito.
+- [X] Capture user email address and a password in order to register.
+- [X] Enable Email verification / Registration functionality for new user.
+- [X] Enable registered user logon.
+- [X] Maintain authenticated user session through all Activities.
 
 ### Publishing App to GoogleStore
 
