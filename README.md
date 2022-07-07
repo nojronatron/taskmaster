@@ -67,9 +67,25 @@ Tuesday 5-July:
 - Debugged app, updated comments to comment strings, removed some dead code, validated functionality.
 - Working through publication steps...
 
+Wednesday 6-July:
+
+- Implemented Cognito through Amplify Auth.
+- Enabled self-registration.
+- Enabled logon capability.
+- Enabled logoff capability.
+
 ## Feature Tasks
 
 Feature Tasks are broken down into the following sub sections.
+
+### Integrate Login Functionality with Cognito
+
+- [X] Create a Register and Login Activity.
+- [X] Enable Authentication through Amplify.AUTH and Cognito.
+- [X] Capture user email address and a password in order to register.
+- [X] Enable Email verification / Registration functionality for new user.
+- [X] Enable registered user logon.
+- [X] Maintain authenticated user session through all Activities.
 
 ### Publishing App to GoogleStore
 
@@ -90,8 +106,8 @@ Feature Tasks are broken down into the following sub sections.
 - [ ] Add App short and full descriptions.
 - [ ] Create and upload: Feature Graphic (1024x500px, 1MB PNG|JPG).
 - [ ] Create and upload: At least 2 320px to 3840px PHONE screenshots.
-- [ ] Create and upload: At least one 7-inch Tablet screenshot 320px to 3840px.
-- [ ] Create and upload: At least one 10-inch Tablet screenshot 320 to 3840px.
+- [ ] ~~Create and upload: At least one 7-inch Tablet screenshot 320px to 3840px.~~
+- [ ] ~~Create and upload: At least one 10-inch Tablet screenshot 320 to 3840px.~~
 
 #### A Note About setContentView Method Errors on Rename
 
@@ -155,6 +171,36 @@ Stretch goals:
 - [X] Also display the description of the task rather than Lorem Ipsum text.
 
 ## Screenshots
+
+### Implementing Authentication with Cognito
+
+A new user, or a user that has logged out will be brought to the Login/Register Activity:
+
+![User can register or login](./app/screenshots/TaskMaster_CognitoLoggedOut_6July.png)
+
+An unregistered user can begin the registration process from within the app, to gain access:
+
+![User can self-register](./app/screenshots/TaskMaster_UserRegistration_Cognito6July.png)
+
+An unregistered user can register their email and custom password, and provide an emailed verification code to gain access:
+
+![User Registered and enteres correct Verification code](./app/screenshots/TaskMaster_NewUserVerificationCode_Cognito6July.png)
+
+After registering an email and password and entering the verification code, AWS has an entry for the new user:
+
+![User registered using verification code](./app/screenshots/TaskMaster_CognitoUserPool_UserRegStatus_6July.png)
+
+Back at the TaskMaster App, the user can complete login after registration and verification:
+
+![Registered User Can Login](./app/screenshots/TaskMaster_CongnitoLogin_6July.png)
+
+Logged-on user has task list according to user's selected Team (Bravo in this case):
+
+![Logged On Users Team Tasks](./app/screenshots/TaskMaster_CognitoLoggedIn_6July.png)
+
+User can log-out at the MainActivity (Tasks List Screen) and will be brought back to the Login/Register Activity:
+
+![User can register or login](./app/screenshots/TaskMaster_CognitoLoggedOut_6July.png)
 
 ### Preparing for Publication to Google Play Store
 

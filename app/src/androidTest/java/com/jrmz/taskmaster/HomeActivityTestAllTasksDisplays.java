@@ -50,7 +50,7 @@ public class HomeActivityTestAllTasksDisplays {
         }
 
         ViewInteraction materialButton = onView(
-                Matchers.allOf(ViewMatchers.withId(R.id.homeAllTasksButton), withText("All Tasks"),
+                Matchers.allOf(ViewMatchers.withId(R.id.homeLogOutButton), withText("All Tasks"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
@@ -69,7 +69,7 @@ public class HomeActivityTestAllTasksDisplays {
         }
 
         ViewInteraction textView = onView(
-                allOf(withId(R.id.textView7), withText("All Tasks"),
+                allOf(withId(R.id.loginRegEmailRegisterTextView), withText("All Tasks"),
                         withParent(withParent(withId(android.R.id.content))),
                         isDisplayed()));
         textView.check(matches(withText("All Tasks")));

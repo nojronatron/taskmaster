@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
+import com.amplifyframework.auth.AuthUser;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Task;
 import com.amplifyframework.datastore.generated.model.Team;
@@ -43,6 +44,10 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        // testAuthSession() is just a test
+//        this.testAuthSession();
+//        this.fetchUserAttributes();
+
         tasks = new ArrayList<>();
         teams = new ArrayList<>();
         loadExistingPreferences();
@@ -52,14 +57,73 @@ public class HomeActivity extends AppCompatActivity {
         setupAddTaskButton();
         setUpUserSettingsButton();
         setUpTasksRecyclerView();
+        setupLogOutButton();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        this.fetchUserAttributes();
         loadExistingPreferences();
         setTitleText();
         getTaskItemsFromDb();
+    }
+
+    /**
+     * Test method to verify Amplify Cognito is initialized and an Auth Session can be referenced.
+     */
+    protected void testAuthSession(){
+        Amplify.Auth.fetchAuthSession(
+                result -> {
+                    Log.i(ACTIVITY_NAME, result.toString());
+                },
+                error -> Log.e(ACTIVITY_NAME, error.toString())
+        );
+    }
+
+    /**
+     * Method fetches user attributes and if not authenticated moves user to LoginRegisterActivity.
+     * Otherwise no action is taken.
+     */
+    protected void fetchUserAttributes() {
+        AuthUser currentUser = Amplify.Auth.getCurrentUser();
+        if (currentUser == null) {
+            runOnUiThread(() -> {
+                Intent goToRegLoginActivity = new Intent(HomeActivity.this, LoginRegisterActivity.class);
+                startActivity(goToRegLoginActivity);
+            });
+        }
+
+//        Amplify.Auth.fetchUserAttributes(
+//                attributes -> Log.i(ACTIVITY_NAME, "User attributes: " + attributes.toString()),
+//                error -> {
+//                    Log.e(ACTIVITY_NAME, "Failed to fetch user attributes (not logged in?)");
+//                    runOnUiThread(() -> {
+//                            Intent goToRegLoginActivity = new Intent(HomeActivity.this, LoginRegisterActivity.class);
+//                            startActivity(goToRegLoginActivity);
+//                    });
+//                }
+//        );
+    }
+
+    /**
+     * Method logs out current user. Will probably put them back at the Login-Register Activity.
+     */
+    private void setupLogOutButton() {
+        Button logoutButton = HomeActivity.this.findViewById(R.id.homeLogOutButton);
+
+        logoutButton.setOnClickListener(view -> {
+            Amplify.Auth.signOut(
+                    () -> {
+                        Log.i(ACTIVITY_NAME, "Signed out successfully.");
+                        // TODO: verify functionality
+                        Intent goHomeIntent = new Intent(HomeActivity.this, LoginRegisterActivity.class);
+                        startActivity(goHomeIntent);
+                    },
+                    error -> Log.e(ACTIVITY_NAME, error.toString())
+            );
+        });
+
     }
 
     /**
@@ -195,16 +259,6 @@ public class HomeActivity extends AppCompatActivity {
             startActivity(goToAddTaskActivity);
         });
     }
-
-//    private void setupLoadAllTasksActivityButton() {
-//        // Set onclick button event handling to all tasks
-//        Button allTasksButton = HomeActivity.this.findViewById(R.id.homeAllTasksButton);
-//
-//        allTasksButton.setOnClickListener(view -> {
-//            Intent goToAllTasksActivity = new Intent(HomeActivity.this, AllTasks.class);
-//            startActivity(goToAllTasksActivity);
-//        });
-//    }
 
     /**
      * Set onClick button event handling to load UserSettings Activity.
