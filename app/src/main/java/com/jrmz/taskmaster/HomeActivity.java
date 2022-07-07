@@ -14,13 +14,10 @@ import android.widget.TextView;
 
 import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
-import com.amplifyframework.auth.AuthChannelEventName;
+import com.amplifyframework.auth.AuthUser;
 import com.amplifyframework.core.Amplify;
-import com.amplifyframework.core.InitializationStatus;
 import com.amplifyframework.datastore.generated.model.Task;
 import com.amplifyframework.datastore.generated.model.Team;
-import com.amplifyframework.hub.HubChannel;
-import com.amplifyframework.hub.SubscriptionToken;
 import com.jrmz.taskmaster.activites.AddTask;
 import com.jrmz.taskmaster.adapters.TaskListRecyclerViewAdapter;
 import com.jrmz.taskmaster.fragments.UserSettings;
@@ -49,7 +46,7 @@ public class HomeActivity extends AppCompatActivity {
 
         // testAuthSession() is just a test
 //        this.testAuthSession();
-        this.fetchUserAttributes();
+//        this.fetchUserAttributes();
 
         tasks = new ArrayList<>();
         teams = new ArrayList<>();
@@ -89,17 +86,24 @@ public class HomeActivity extends AppCompatActivity {
      * Otherwise no action is taken.
      */
     protected void fetchUserAttributes() {
-        // TODO: determine whether to refactor this code for case user IS logged in
-        Amplify.Auth.fetchUserAttributes(
-                attributes -> Log.i(ACTIVITY_NAME, "User attributes: " + attributes.toString()),
-                error -> {
-                    Log.e(ACTIVITY_NAME, "Failed to fetch user attributes (not logged in?)");
-                    runOnUiThread(() -> {
-                            Intent goToRegLoginActivity = new Intent(HomeActivity.this, LoginRegisterActivity.class);
-                            startActivity(goToRegLoginActivity);
-                    });
-                }
-        );
+        AuthUser currentUser = Amplify.Auth.getCurrentUser();
+        if (currentUser == null) {
+            runOnUiThread(() -> {
+                Intent goToRegLoginActivity = new Intent(HomeActivity.this, LoginRegisterActivity.class);
+                startActivity(goToRegLoginActivity);
+            });
+        }
+
+//        Amplify.Auth.fetchUserAttributes(
+//                attributes -> Log.i(ACTIVITY_NAME, "User attributes: " + attributes.toString()),
+//                error -> {
+//                    Log.e(ACTIVITY_NAME, "Failed to fetch user attributes (not logged in?)");
+//                    runOnUiThread(() -> {
+//                            Intent goToRegLoginActivity = new Intent(HomeActivity.this, LoginRegisterActivity.class);
+//                            startActivity(goToRegLoginActivity);
+//                    });
+//                }
+//        );
     }
 
     /**
@@ -110,10 +114,16 @@ public class HomeActivity extends AppCompatActivity {
 
         logoutButton.setOnClickListener(view -> {
             Amplify.Auth.signOut(
-                    () -> Log.i(ACTIVITY_NAME, "Signed out successfully."),
+                    () -> {
+                        Log.i(ACTIVITY_NAME, "Signed out successfully.");
+                        // TODO: verify functionality
+                        Intent goHomeIntent = new Intent(HomeActivity.this, LoginRegisterActivity.class);
+                        startActivity(goHomeIntent);
+                    },
                     error -> Log.e(ACTIVITY_NAME, error.toString())
             );
         });
+
     }
 
     /**

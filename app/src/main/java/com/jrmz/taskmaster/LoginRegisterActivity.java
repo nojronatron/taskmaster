@@ -17,7 +17,7 @@ import com.jrmz.taskmaster.activites.AddTask;
 import com.jrmz.taskmaster.fragments.UserSettings;
 
 public class LoginRegisterActivity extends AppCompatActivity {
-    public static final String ACTIVITY_NAME = "HomeActivity";
+    public static final String ACTIVITY_NAME = "LoginRegisterActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,13 +47,12 @@ public class LoginRegisterActivity extends AppCompatActivity {
                     result -> {
                         // TODO redirect user to MainActivity
                         Log.i(ACTIVITY_NAME, result.isSignInComplete() ? "Sign in succeeded" : "Sign in FAILED");
+                        Intent goToHomeActivity = new Intent(LoginRegisterActivity.this, HomeActivity.class);
+                        startActivity(goToHomeActivity);
                     },
                     error -> Log.e(ACTIVITY_NAME, "Sign-in Process resturned error: " + error.toString())
             );
         });
-
-        Intent goToHomeActivity = new Intent(LoginRegisterActivity.this, HomeActivity.class);
-        startActivity(goToHomeActivity);
     }
 
     private void setupVerifyButton() {
@@ -66,7 +65,7 @@ public class LoginRegisterActivity extends AppCompatActivity {
             Amplify.Auth.confirmSignUp(loginEmailEntry.getText().toString(), userInputVerifyCode.getText().toString(),
                     success -> {
                         Log.i(ACTIVITY_NAME, "Verification succeeded for email " + loginEmailEntry);
-                        // TODO: activate the password entry box for user to login
+                        // TODO: activate the password entry box for user to login if hidden
                     },
                     failure -> Log.e(ACTIVITY_NAME, "Verification failed: " + failure.toString()));
         });
