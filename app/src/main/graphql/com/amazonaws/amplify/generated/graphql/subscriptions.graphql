@@ -5,6 +5,7 @@ subscription OnCreateTask {
     title
     body
     state
+    imagepath
     team {
       id
       name
@@ -25,6 +26,7 @@ subscription OnUpdateTask {
     title
     body
     state
+    imagepath
     team {
       id
       name
@@ -45,6 +47,7 @@ subscription OnDeleteTask {
     title
     body
     state
+    imagepath
     team {
       id
       name
@@ -69,6 +72,7 @@ subscription OnCreateTeam {
         title
         body
         state
+        imagepath
         createdAt
         updatedAt
         teamTaskId
@@ -89,6 +93,7 @@ subscription OnUpdateTeam {
         title
         body
         state
+        imagepath
         createdAt
         updatedAt
         teamTaskId
@@ -109,6 +114,7 @@ subscription OnDeleteTeam {
         title
         body
         state
+        imagepath
         createdAt
         updatedAt
         teamTaskId
