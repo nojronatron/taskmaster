@@ -165,8 +165,9 @@ public class AddTask extends AppCompatActivity {
                     result = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
                 }
             } finally {
-                // TODO: verify this code spaghetti works
-                var thingy = cursor != null ? cursor.close() : null;
+                // TODO: verify this code snipped (from IntelliJ) works
+                assert cursor != null;
+                cursor.close();
             }
         }
 
