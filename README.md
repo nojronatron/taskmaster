@@ -74,7 +74,7 @@ Wednesday 6-July:
 - Enabled logon capability.
 - Enabled logoff capability.
 
-Friday 8-July
+Friday 8-July and Monday 11-July
 
 - Allow users to optionally select an image to attach to a new task.
 - If a user attaches an image to the task it should be uploaded to S3 and associated with that task.
