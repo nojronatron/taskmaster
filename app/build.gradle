@@ -28,8 +28,10 @@ android {
 }
 
 dependencies {
+    // amplify storage S3
+    implementation 'com.amplifyframework:aws-storage-s3:1.36.2'
     // amplify auth
-    implementation 'com.amplifyframework:aws-auth-cognito:1.36.1'
+    implementation 'com.amplifyframework:aws-auth-cognito:1.36.2'
     // Amplify core dependency
     implementation 'com.amplifyframework:core:1.36.0'
     implementation 'com.amplifyframework:aws-api:1.36.0'
