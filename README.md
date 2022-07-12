@@ -74,9 +74,30 @@ Wednesday 6-July:
 - Enabled logon capability.
 - Enabled logoff capability.
 
+Friday 8-July and Monday 11-July
+
+- App is currently debugged and runs without crashing.
+- User can login, go to Add Task activity, and click the Add Image button and get the Picker utility.
+- Missing: Attach an image (see TODOs, below).
+- Missing: Upload to S3 (Code to get key and implement upload to S3 not done).
+- Allow users to optionally select an image to attach to a new task (nearly done).
+- If a user attaches an image to the task it should be uploaded to S3 and associated with that task (NOT done).
+- Task Detail should display an image within the activity if one is associated with the selected task (NOT done).
+
+TODOs
+
+- Add a few sample images to the Emulator that can be selected.
+- Get image upload (to S3) working.
+
 ## Feature Tasks
 
 Feature Tasks are broken down into the following sub sections.
+
+### Add Attach An Image Functionality
+
+- [ ] Allow user to optionally attach an image to a new Task.
+- [ ] A selected image is uploaded to S3 and associated with that task.
+- [ ] Image associated with the Task is displayed within the Task Detail activity.
 
 ### Integrate Login Functionality with Cognito
 
