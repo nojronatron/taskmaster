@@ -55,10 +55,13 @@ public class AddTask extends AppCompatActivity {
 
         setContentView(R.layout.activity_add_task);
         teamsFuture = new CompletableFuture<>();
+
         this.getTeamsFromDB();
         this.setUpTaskStatusSpinner();
         this.setUpAddImageButton();
         this.setupAddThisButton();
+
+//        s3imageKey = task
     }
 
     /**
@@ -84,42 +87,44 @@ public class AddTask extends AppCompatActivity {
         activityResultLauncher.launch(imageFilePickerIntent);
     }
 
+    /**
+     * Returns a method as an ActivityResultLauncher Intent, as required by
+     * ActivityResultCaller interface.
+     * @return
+     */
     public ActivityResultLauncher<Intent> getImagePickerActivityResultLauncher() {
-        ActivityResultLauncher<Intent> imagePickerActivityResultLauncher =
-                registerForActivityResult(
+        // TODO: verify this refactoring works as intended
+        return registerForActivityResult(
                         new ActivityResultContracts.StartActivityForResult(),
-                        new ActivityResultCallback<ActivityResult>() {
-                            @Override
-                            public void onActivityResult(ActivityResult result) {
-
-                                try {
-                                    assert result.getData() != null; // suggested by IntelliJ IDEA
-                                    Uri pickedImageUri = result.getData().getData();
-                                    InputStream pickedImageInputStream = getContentResolver()
-                                            .openInputStream(pickedImageUri);
-                                    String pickedImageFilename = getFileNameFromUri(pickedImageUri);
-                                    uploadInputStreamToS3(pickedImageInputStream,
-                                            pickedImageFilename,
-                                            pickedImageUri);
-                                    Log.i(ACTIVITY_NAME,
-                                            "Successfully grabbed input stream from file on this device.");
-                                } catch (FileNotFoundException fnfe) {
-                                    Log.e(ACTIVITY_NAME,
-                                            "Could not get file from device " +
-                                            fnfe.getMessage(), fnfe);
-                                } catch (Exception ex) {
-                                    Log.e(ACTIVITY_NAME,
-                                            "An unexpected exception occurred: " +
-                                                    ex.getMessage(), ex);
-                                }
+                        result -> {
+                            // TODO: verify this lambda works as intended
+                            try {
+                                assert result.getData() != null; // suggested by IntelliJ IDEA
+                                Uri pickedImageUri = result.getData().getData();
+                                InputStream pickedImageInputStream = getContentResolver()
+                                        .openInputStream(pickedImageUri);
+                                String pickedImageFilename = getFileNameFromUri(pickedImageUri);
+                                uploadInputStreamToS3(pickedImageInputStream,
+                                        pickedImageFilename,
+                                        pickedImageUri);
+                                Log.i(ACTIVITY_NAME,
+                                        "Successfully grabbed input stream from file on this device.");
+                            } catch (FileNotFoundException fnfe) {
+                                Log.e(ACTIVITY_NAME,
+                                        "Could not get file from device " +
+                                        fnfe.getMessage(), fnfe);
+                            } catch (Exception ex) {
+                                Log.e(ACTIVITY_NAME,
+                                        "An unexpected exception occurred: " +
+                                                ex.getMessage(), ex);
                             }
                         }
                 );
-
-        return imagePickerActivityResultLauncher; // TODO: replace this return with a real return
     }
 
-    private void uploadInputStreamToS3(InputStream pickedImageInputStream, String pickedImageFilename, Uri pickedImageUri) {
+    private void uploadInputStreamToS3(InputStream pickedImageInputStream,
+                                       String pickedImageFilename,
+                                       Uri pickedImageUri) {
         Amplify.Storage.uploadInputStream(
                 pickedImageFilename,
                 pickedImageInputStream,
@@ -251,7 +256,8 @@ public class AddTask extends AppCompatActivity {
             }
 
             String selectedTeamName = teamNamesSpinner.getSelectedItem().toString();
-            Team selectedTeam = teams.stream().filter(team -> team.getName().equals(selectedTeamName)).findAny().orElseThrow(RuntimeException::new);
+            Team selectedTeam = teams.stream().filter(team -> team.getName()
+                    .equals(selectedTeamName)).findAny().orElseThrow(RuntimeException::new);
 
             Task task = Task.builder()
                     .title(newTaskTitle)
