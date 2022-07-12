@@ -76,9 +76,18 @@ Wednesday 6-July:
 
 Friday 8-July and Monday 11-July
 
-- Allow users to optionally select an image to attach to a new task.
-- If a user attaches an image to the task it should be uploaded to S3 and associated with that task.
-- Task Detail should display an image within the activity if one is associated with the selected task.
+- App is currently debugged and runs without crashing.
+- User can login, go to Add Task activity, and click the Add Image button and get the Picker utility.
+- Missing: Attach an image (see TODOs, below).
+- Missing: Upload to S3 (Code to get key and implement upload to S3 not done).
+- Allow users to optionally select an image to attach to a new task (nearly done).
+- If a user attaches an image to the task it should be uploaded to S3 and associated with that task (NOT done).
+- Task Detail should display an image within the activity if one is associated with the selected task (NOT done).
+
+TODOs
+
+- Add a few sample images to the Emulator that can be selected.
+- Get image upload (to S3) working.
 
 ## Feature Tasks
 
