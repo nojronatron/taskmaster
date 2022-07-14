@@ -78,11 +78,13 @@ Friday 8-July and Monday 11-July
 
 - App is currently debugged and runs without crashing.
 - User can login, go to Add Task activity, and click the Add Image button and get the Picker utility.
-- Missing: Attach an image (see TODOs, below).
-- Missing: Upload to S3 (Code to get key and implement upload to S3 not done).
-- Allow users to optionally select an image to attach to a new task (nearly done).
+- Allow users to optionally select an image to attach to a new task.
 - If a user attaches an image to the task it should be uploaded to S3 and associated with that task (NOT done).
+
+Wednesday 13-July
+
 - Task Detail should display an image within the activity if one is associated with the selected task (NOT done).
+- Missing: Upload to S3 (Code to get key and implement upload to S3 not done).
 
 TODOs
 
@@ -95,7 +97,7 @@ Feature Tasks are broken down into the following sub sections.
 
 ### Add Attach An Image Functionality
 
-- [ ] Allow user to optionally attach an image to a new Task.
+- [X] Allow user to optionally attach an image to a new Task.
 - [ ] A selected image is uploaded to S3 and associated with that task.
 - [ ] Image associated with the Task is displayed within the Task Detail activity.
 
@@ -328,3 +330,7 @@ As a guide I referenced the Class Repository and this [Medium.com article](https
 Additional *thanks!* go to code samurai and troubleshooting master [Roger Reyes](https://github.com/RogerMReyes)
 
 More *thanks!* to [Raul Zarate](https://github.com/zaratr) for his input while debugging!
+
+## Requirements
+
+Recommend API Level 30 or higher. Minimum API: 24.
